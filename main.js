@@ -6,7 +6,8 @@ function toggleClock() {
   if (timerId === null) {
     timerId = setInterval(updateTime, 1000);
     updateTime();
-
+    timeButton.style.fontFamily = "Arial, sans-serif";
+    timeButton.style.border = "4px solid red";
     timeButton.style.backgroundColor = "green";
     timeButton.style.color = "cyan";
     timeButton.style.fontSize = "30px";
@@ -15,17 +16,17 @@ function toggleClock() {
     timerId = null;
 
     timeButton.innerHTML= "Show Time";
-    timeButton.style.backgroundColor = "";
-    timeButton.style.color = "";
-    timeButton.style.fontSize = "";
+    timeButton.style.backgroundColor = "green";
+    timeButton.style.color = "cyan";
+    timeButton.style.fontSize = "30px";
   }
 }
 
 function updateTime() {
     let date = new Date();
-    let hours = date.getHours();
-    let minutes = date.getMinutes();
-    let seconds = date.getSeconds();
+    let hours = date.getHours().toString().padStart(2, "0");;
+    let minutes = date.getMinutes().toString().padStart(2, "0");
+    let seconds = date.getSeconds().toString().padStart(2, "0");
 
     hours = hours < 10 ? "0" + hours : hours;
     minutes = minutes < 10 ? "0" + minutes : minutes;
