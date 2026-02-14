@@ -19,5 +19,8 @@ time {
     text-align: center;
     margin-top: 20px;
     font-size: 1.2em;
-    color: #1A0A53;
+    color: #008000;
+    background-color: #00ffff;
+    padding: 10px;
+    border-radius: 5px;
 }   
