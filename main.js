@@ -1,24 +1,24 @@
 let timerId = null;
+const btn = document.getElementById("time");
 
 function toggleClock() {
-  const timeButton = document.getElementById("time)");
-
   if (timerId === null) {
     timerId = setInterval(updateTime, 1000);
     updateTime();
-    timeButton.style.fontFamily = "Arial, sans-serif";
-    timeButton.style.border = "4px solid red";
-    timeButton.style.backgroundColor = "green";
-    timeButton.style.color = "cyan";
-    timeButton.style.fontSize = "30px";
+    btn.style.fontFamily = "Arial, sans-serif";
+    btn.style.border = "8px solid magenta";
+    btn.style.backgroundColor = "yellow";
+    btn.style.color = "purple";
+    btn.style.fontSize = "30px";
   } else {
     clearInterval(timerId);
     timerId = null;
 
-    timeButton.innerHTML= "Show Time";
-    timeButton.style.backgroundColor = "green";
-    timeButton.style.color = "cyan";
-    timeButton.style.fontSize = "30px";
+    btn.innerHTML= "Show Time";
+    btn.style.backgroundColor = "green";
+    btn.style.color = "cyan";
+    btn.style.fontSize = "20px";
+    btn.style.border = "4px solid red";
   }
 }
 
@@ -28,11 +28,26 @@ function updateTime() {
     let minutes = date.getMinutes().toString().padStart(2, "0");
     let seconds = date.getSeconds().toString().padStart(2, "0");
 
-    hours = hours < 10 ? "0" + hours : hours;
-    minutes = minutes < 10 ? "0" + minutes : minutes;
-    seconds = seconds < 10 ? "0" + seconds : seconds;
-    
-    document.getElementById("time").innerHTML = hours + ":" + minutes + ":" + seconds;
+    btn.innerHTML = `${hours}:${minutes}:${seconds}`;
+    }
+
+
+btn.onmouseenter = function() {
+    btn.dataset.oldBg = btn.style.backgroundColor;
+    btn.dataset.oldCol = btn.style.color;
+
+    if (timerId === null) {
+        btn.style.backgroundColor = "indigo";
+        btn.style.color = "chartreuse";
+    } else {
+        btn.style.backgroundColor = "darkorange";
+        btn.style.color = "white";
+    }
 }
 
-document.getElementById("time").onclick = toggleClock;
+btn.onmouseleave = function() {
+    btn.style.backgroundColor = btn.dataset.oldBg;
+    btn.style.color = btn.dataset.oldCol;
+}
+
+btn.onclick = toggleClock;

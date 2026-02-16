@@ -14,7 +14,7 @@ h1 {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     color: chocolate;
 }
-time {
+#time {
     display: block;
     text-align: center;
     margin-top: 20px;
@@ -23,4 +23,11 @@ time {
     background-color: #00ffff;
     padding: 10px;
     border-radius: 5px;
-}   
+    border: 8px solid #003366;
+}
+#time:hover {
+    background-color: #99ff33;
+    color: #cc99ff;
+    border: 16px dashed #660066;
+    cursor: pointer;
+}
