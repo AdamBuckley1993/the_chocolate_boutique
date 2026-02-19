@@ -48,6 +48,56 @@
             <li>Assorted Chocolate Gift Boxes</li>
         </ul>
     </section>
+    <section id="custom-builder" style="background: #fff5b7; padding: 20px; border-radius: 10px; margin: 20px; border: 3px solid #3d1c0c;">
+    <h2>Custom Chocolate Box Builder</h2>
+    <p>Select your favorite additions ($2.00 each):</p>
+    <div id="options-area">
+        <label><input type="checkbox" class="choco-option" data-name="Sea Salt" data-price="2.00"> Sea Salt</label><br>
+        <label><input type="checkbox" class="choco-option" data-name="Caramel Drizzle" data-price="2.00"> Caramel Drizzle</label><br>
+        <label><input type="checkbox" class="choco-option" data-name="Roasted Hazelnuts" data-price="2.00"> Roasted Hazelnuts</label><br>
+        <label><input type="checkbox" class="choco-option" data-name="Gold Leaf" data-price="2.00"> Edible Gold Leaf</label>
+    </div>
+
+    <div id="invoice-section" style="margin-top: 30px; border-top: 2px dashed #3d1c0c; padding-top: 20px;">
+        <h3>Order Summary & Invoice</h3>
+        <table id="invoice-table" style="width: 100%; text-align: left; border-collapse: collapse;">
+            <thead>
+                <tr style="border-bottom: 2px solid #3d1c0c;">
+                    <th>Item</th>
+                    <th>Price</th>
+                </tr>
+            </thead>
+            <tbody id="invoice-body">
+                </tbody>
+            <tfoot>
+                <tr style="font-weight: bold; border-top: 2px solid #3d1c0c;">
+                    <td>Total Amount:</td>
+                    <td id="invoice-total">$0.00</td>
+                </tr>
+            </tfoot>
+        </table>
+        <div id="invoice-section" ...>
+    <div style="text-align: right; margin-top: 15px;">
+        <button id="print-invoice-btn" style="
+            background: #3d1c0c; 
+            color: #ffd700; 
+            padding: 10px 20px; 
+            border: 2px solid #ffd700; 
+            border-radius: 5px; 
+            cursor: pointer;
+            font-weight: bold;">
+            Print Official Receipt
+        </button>
+    </div>
+</div>
+    </div>
+</section>
+<section id="boutique-catalog" style="margin: 20px; padding: 20px; background: #fff5b7; border-radius: 10px; border: 3px solid #3d1c0c;">
+    <h2>Boutique Catalog</h2>
+    <p>Select from our finest pre-made assortments. Stock is limited!</p>
+    <div id="product-grid" style="display: grid; grid-template-columns: repeat(auto-fit, min-minmax(250px, 1fr)); gap: 20px;">
+        </div>
+</section>
     <section id="contact">
         <h2>Contact Us</h2>
         <p>Have questions or want to place an order? Reach out to us!</p>

@@ -452,3 +452,561 @@ function startTicketCountdown() {
     }, 1000);
 }
 
+const checkBoxes = document.querySelectorAll(".choco-option");
+const invoiceBody = document.getElementById("invoice-body");
+const invoiceTotal = document.getElementById("invoice-total");
+
+function updateInvoice() {
+    invoiceBody.innerHTML = "";
+    let total = 0;
+
+    if (count > 0) {
+        const row = invoiceBody.insertRow();
+        row.insertCell(0).textContent = "Chocolate Box";
+        row.insertCell(1).textContent = count;
+        row.insertCell(2).textContent = "$10";
+        row.insertCell(3).textContent = `$${count * 10}`;
+        total += count * 10;
+    }
+    
+    checkBoxes.forEach(box => {
+        if (box.checked) {
+            const name = box.dataset.name;
+            const price = parseFloat(box.dataset.price);
+            const row = invoiceBody.insertRow();
+            row.insertCell(0).textContent = name;
+            row.insertCell(1).textContent = "1";
+            row.insertCell(2).textContent = `$${price.toFixed(2)}`;
+            row.insertCell(3).textContent = `$${price.toFixed(2)}`;
+            total += price;
+        }
+    });
+
+    invoiceTotal.textContent = `Total: $${total.toFixed(2)}`;
+}
+
+checkBoxes.forEach(box => {
+    box.addEventListener("change", updateInvoice);
+    clickSound.currentTime = 0;
+    clickSound.play();
+});
+
+updateInvoice();
+
+const originalProductCheck = checkBoxes[0].onclick;
+checkBoxes.forEach(box => {
+    const originalOnClick = box.onclick;
+    box.onclick = function() {
+        originalOnClick.call(this);
+        clickSound.currentTime = 0;
+        clickSound.play();
+    };
+    updateInvoice();
+});
+
+const printBtn = document.getElementById("print-invoice");
+printBtn.onclick = function() {
+    const now = new Date();
+    const dateStr = now.toLocaleDateString();
+    const timeStr = now.toLocaleTimeString();
+    const header = document.createElement("h2");
+    header.textContent = `Invoice - ${dateStr} ${timeStr}`;
+    header.style.textAlign = "center";
+    header.style.color = "#3d1c0c";
+    header.style.fontFamily = "Georgia, serif";
+
+    let dateEl = document.getElementById("invoice-date");
+    if (!dateEl) {
+        dateEl = document.createElement("div");
+        dateEl.id = "invoice-date";
+        dateEl.style.textAlign = "center";
+        dateEl.style.marginBottom = "20px";
+        dateEl.style.color = "#3d1c0c";
+        dateEl.style.fontFamily = "Georgia, serif";
+        invoiceBody.parentNode.insertBefore(dateEl, invoiceBody);
+    }
+    dateEl.textContent = `Date: ${dateStr} Time: ${timeStr}`;
+
+    const originalContent = document.body.innerHTML;
+    const invoiceContent = document.getElementById("invoice").outerHTML;
+    document.body.innerHTML = invoiceContent;
+    window.print();
+    document.body.innerHTML = originalContent;
+
+    document.getElementById("cart-count").textContent = count;
+    dateEl.textContent = `Date: ${dateStr} Time: ${timeStr}`;
+    dateEl.style.fontWeight = "bold";
+
+    if(ticketSlideSound) {
+        ticketSlideSound.currentTime = 0;
+        ticketSlideSound.play();
+    }
+
+    setTimeout(() => {
+        window.print();
+    }, 1000);
+};
+
+const boutiqueProducts = [
+    {
+        id: "p1",
+        name: "Artisan Truffle Assortment",
+        description: "A luxurious selection of handcrafted truffles in a variety of flavors, including dark chocolate, sea salt caramel, and raspberry ganache.",
+        price: 29.99,
+        image: "https://example.com/images/truffle-assortment.jpg",
+        stock: 50
+    },
+    {
+        id: "p2",
+        name: "Domori Pralines Selection",
+        description: "An exquisite collection of Domori's finest pralines, featuring unique flavor combinations and high-quality cocoa.",
+        price: 39.99,
+        image: "https://example.com/images/domori-pralines.jpg",
+        stock: 30
+    },
+    {
+        id: "p3",
+        name: "Single-Origin Chocolate Bar Set",
+        description: "A set of single-origin chocolate bars from around the world, each with its own distinct flavor profile and cocoa percentage.",
+        price: 24.99,
+        image: "https://example.com/images/single-origin-bars.jpg",
+        stock: 40
+    }
+];
+
+function renderProducts() {
+    const grid = document.getElementById("product-grid");
+    grid.innerHTML = "";
+
+    boutiqueProducts.forEach(product => {
+        const card = document.createElement("div");
+        card.className = "product-card";
+        card.style = "border: 2px solid #3d1c0c; border-radius: 10px; padding: 15px; text-align: center; background-color: #f3e5ab; transition: transform 0.2s, box-shadow 0.2s;";
+        card.innerHTML = `
+            <img src="${product.image}" alt="${product.name}" style="width: 100%; height: auto; border-radius: 10px;">
+            <h3 style="color: #3d1c0c;">${product.name}</h3>
+            <p style="color: #5d2e1a;">${product.description}</p>
+            <p style="color: #3d1c0c; font-weight: bold;">$${product.price.toFixed(2)}</p>
+            <button class="add-to-cart" data-id="${product.id}" style="background-color: #3d1c0c; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">Add to Cart</button>
+            <p><strong>Price: $${product.price.toFixed(2)}</strong></p>
+            <p id="stock-${product.id}" style="color: ${product.stock > 0 ? 'green' : 'red'};">${product.stock > 0 ? `In Stock: ${product.stock}` : 'Out of Stock'}</p>
+            In Stock: ${product.stock}</p>
+            <button onclick="addToCart('${product.id}')" style="background-color: #3d1c0c; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">Add to Cart</button>
+        `;
+        grid.appendChild(card);
+    });
+}
+
+window.purchaseProduct = function(productId) {
+    const product = boutiqueProducts.find(p => p.id === productId);
+    if (product && product.stock > 0) {
+        product.stock -= 1;
+        count += 1;
+        localStorage.setItem("cartCount", count);
+        document.getElementById(`stock-${product.id}`).textContent = product.stock > 0 ? `In Stock: ${product.stock}` : 'Out of Stock';
+        cartCountElement.textContent = count;
+        clickSound.currentTime = 0;
+        if (clickSound) clickSound.play();
+        renderCatalog();
+        updateInvoice();
+    }
+};
+
+window.onload = () => {
+    renderCatalog();
+    document.getElementById("cart-count").textContent = count;
+};
+
+/* GHIRARDELLI PRACTICE FOR WEB MODELING
+ <!DOCTYPE html>
+<html lang="en-us">
+    <head>
+        <script type="text/javascript">
+            ;
+            window.NREUM || (NREUM = {});
+            NREUM.init = {
+                distributed_tracing: {
+                    enabled: true
+                },
+                privacy: {
+                    cookies_enabled: true
+                },
+                ajax: {
+                    deny_list: ["bam.nr-data.net"]
+            }
+        };
+
+        ;
+        NREUM.loader_config = {
+            accountID: "3366902",
+            trustKey: "1322840",
+            agentID: "1120121849",
+            licenseKey: "NRJS-14096ca56343b02121f",
+            applicationID: "1120121849"
+        }
+        ;
+        NREUM.info = {
+            beacon: "bam.nr-data.net",
+            errorBeacon: "bam.nr-data.net",
+            licenseKey: "NRJS-14096ca56343b02121f",
+            applicationID: "1120121849",
+            sa: 1
+        }
+        window.NREUM || ((NREUM = {})),
+        __nr_require = function(t, e, n) {
+            function r(n) {
+                if (!e[n]) {
+                    var o = e[n] = {
+                        exports: {}
+                    };
+                    t[n][0].call(o.exports, function(e) {
+                        var o = t[n][1][e];
+                        return r(o || e)
+                    }, o, o.exports)
+                }
+                return e[n].exports
+            }
+            if ("function" === typeof __nr_require)
+                return __nr_require;
+            for (var o = 0; o < n.length; o++)
+                r(n[o]);
+            return r
+        }({
+            1: [function(t, e, n) {
+                function r(t) {
+                    try {
+                        s.console && console.log(t)
+                    } catch (e) {}
+                }
+                var o,
+                    i = t("ee"),
+                    a = t(31),
+                    s = {};
+                try {
+                    o = localStorage.getItem("__nr_flags").split(",")
+                    console && "function" === typeof console.log && (s.console = !0, o.indexOf("dev") !== -1 && (s.dev = !0), o.indexOf("nr_dev") !== -1 && (s.nrDev = !0))
+            } catch (c) {}
+            s.nrDev && i.on("internal-error"), function(t) {
+                r(t.stack)
+            }),
+            s.dev && i.on("fn-err", function(t, e, n) {
+                r(n.stack)
+            }),
+            s.dev && (r("NR AGENT IN DEVELOPMENT MODE"), r("flags: " + a(s, function(t, e) {
+                return t
+            }).join(", ")))
+        }, {}],
+        2: [function(t, e, n) {
+            function r(t, e, n, r, s) {
+                try {
+                    l ? l -= 1 : 0(s || new UncaughtException(t, e, n), !0)
+                } catch (f) {
+                    try {
+                        i("ierr", [f, c.now(), !0])
+                    } catch (d) {}
+                } 
+                return "function" === typeof u && u.apply(this, a(arguments))
+                }
+                function UncaughtException(t, e, n) {
+                    this.message = t || "Uncaught error with no additional information", 
+                    this.sourceURL = e, 
+                    this.line = n
+                }
+                function o(t, e) {
+                    var n = e ? null : c.now();
+                    i("err", [t, n])
+                }
+                var i = t("handle"),
+                    a = t(32),
+                    s = t("ee"),
+                    c = t("loader"),
+                    f = t("gos"),
+                    u = window.onerror,
+                    d = !1,
+                    p = "nr@seenError",
+                if (!c.disabled) {
+                    var l = 0;
+                    c.features.err = !0,
+                    t(1),
+                    window.onerror = r;
+                    try {
+                        throw new Error
+                    } catch (h) {
+                        "stack" in h && (t(14), t(13), "addEventListener" in window && t(7), c.xhrWrappable && t(15), d = !.0)
+                    }
+                    s.on("fn-start", function(t, e, n) {
+                        d && (l += 1)
+                    }),
+                    s.on("fn-err", function(t, e, n) {
+                        d && !n[p] && (f(n, p, function() {
+                            return !0
+                        }), this.thrown = !0, o(n))
+                    }),
+                    s.on("fn-end", function() {
+                        d && !this.thrown && l > 0 && (l -= 1)
+                    }),
+                    s.on("internal-error", function(t) {
+                        i("ierr", [t, c.now(), !0])
+                    })
+                }
+            }, {}],
+            3: [function(t, e, n) {
+                var r = t("loader");
+                r.disabled || (r.features.ins = !0)
+        }, {}],
+        4: [function(t, e, n) {
+            function r() {
+                U++,
+                L = g.hash,
+                this[u] = y.now()
+            }
+            function o() {
+                U--,
+                g.has !== L && i(0, !0);
+                var t = y.now();
+                this[h] = ~~this[h] + t - this[u],
+                this[d] = t
+            }
+            function i(t, e) {
+                E.emit("newURL", ["" + g, e])
+            }
+            function a(t, e) {
+                t.on(e, function() {
+                    this[e] = y.now()
+                })
+            }
+            var s = "-start",
+                c = "-end",
+                f = "-body",
+                u = "fn" + s,
+                d = "fn" + c,
+                p = "cb" + s,
+                l = "cb" + c,
+                h = "jsTime",
+                m = "fetch",
+                v = "addEventListener",
+                w = window,
+                g = w.location,
+                y = t("loader");
+            if (w[v] && y.xhrWrappable && !y.disabled) {
+                var x = t(11),
+                    b = t(12),
+                    E = t(9),
+                    R = t(7),
+                    O = t(14),
+                    T = t(8),
+                    S = t(15);
+                    P = t(10),
+                    M = t("ee"),
+                    C = M.get("tracer"),
+                    N = t(23);
+                t(17),
+                y.features.spa = !0,
+                var L,
+                    U = 0;
+                M.on(u, r),
+                b.on(p, r),
+                P.on(p, r),
+                M.on(d, o),
+                b.on(l, o),
+                P.on(l, o),
+                M.buffer([u, d, "xhr-resolved"]),
+                R.buffer([u]),
+                O.buffer(["setTimeout" + c, "clearTimeout" + s, u]),
+                S.buffer([u, "new-xhr", "send-xhr" + s]),
+                T.buffer([m + s, m + "-done", m + f + s, m + f + c]),
+                E.buffer(["newURL"]),
+                x.buffer([u]),
+                b.buffer(["propagate", p, l, "executor-err", "resolve" + s]),
+                C.buffer([u, "no-" + u]),
+                P.buffer(["new-jsonp", "cb-start", "jsonp-error", "jsonp-end"]),
+                a(T, m + s),
+                a(T, m + "-done"),
+                a(P, "new-jsonp"),
+                a(P, "jsonp-end"),
+                a(P, "cb-start"),
+                E.on("pushState-end", i),
+                E.on("replaceState-end", i),
+                w[v]("hashchange", i, N(!0)),
+                w[v]("load", i, N(!0)),
+                w[v]("popstate", function() {
+                    i(0, U > 1)
+                }, N(!0))
+            }
+        }, {}],
+        5: [function(t, e, n) {
+            function r() {
+                var t = new PerformanceObserver(function(t, e) {
+                    var n = t.getEntries();
+                    s(v, [n])
+                });
+                try {
+                    t.observe({
+                        entryTypes: ["resource"]
+                    })
+                } catch (e) {}
+            }
+            function o(t) {
+                if (s(v, [window.performance.getEntriesByType(w)]), window.performance["c" + p])
+                    try {
+                        window.performance[h](m, o, !1)
+                } catch (t) {}
+            }
+            function i(t) {}
+            if (window.performance && window.performance.timing && window.performance.getEntriesByType) {
+                var a = t("ee"),
+                    s = t("handle"),
+                    c = t(14),
+                    f = t(13),
+                    u = t(6),
+                    d = t(23),
+                    p = "learResourceTimings",
+                    l = "addEventListener",
+                    h = "removeEventListener",
+                    m = "resourcetimingbufferfull",
+                    v = "bstResource",
+                    w = "resource",
+                    g = "-start",
+                    y = "-end",
+                    x = "fn" + g,
+                    b = "fn" + y,
+                    E = "bstTimer",
+                    R = "pushState",
+                    O = t("loader");
+                if (!O.disabled) {
+                    O.features.stn = !0,
+                    t(9),
+                    "addEventListener" in window && t(7);
+                    var T = NREUM.o.EV;
+                    a.on(x, function(t, e) {
+                        var n = t[0];
+                        n instanceof T && (this.bstStart = O.now())
+                }),
+                a.on(b, function(t, e) {
+                    var n = t[0];
+                    n instanceof T && s("bst", [n, e, this.bstStart, O.now()])
+                }),
+                c.on(x, function(t, e, n) {
+                    this.bstStart = O.now(),
+                    this.bstType = n
+                }),
+                c.on(b, function(t, e) {
+                    s(E, [e, this.bstStart, O.now(), this.bstType])
+                }),
+                f.on(x, function() {
+                    this.bstStart = O.now()
+                }),
+                f.on(b, function(t, e) {
+                    s(E, [e, this.bstStart, O.now(), "requestAnimationFrame"])
+                }),
+                a.on(R + g, function(t) {
+                    this.time = O.now(),
+                    this.startPath = location.pathname + location.hash
+                }),
+                a.on(R + y, function(t) {
+                    s("bstHist", [location.pathname + location.hash, this.startPath, this.time])
+                }),
+                u() ? (s(v, [window.performance.getEntriesByType("resource")]), r()) : l in window.performance && (window.performance["c" + p] ? window.performance[l](m, o, d(!1)) : window.performance[l]("webkit" + m, o, d(!1))),
+                document[l]("scroll", i, d(!1)),
+                document[l]("keypress", i, d(!1)),
+                document[l]("click", i, d(!1))
+            }
+        }
+    }, {}],
+        6: [function(t, e, n) {
+            e.exports = function() {
+                return "PerformanceObserver" in window && "function" == typeof window.PerformanceObserver
+            }
+        }, {}],
+        7: [function(t, e, n) {
+            function r(t) {
+                for (var e = t; e && !e.hasOwnProperty(u);)
+                    e = Object.getPrototypeOf(e);
+                e && o(e)
+            }
+            function o(t) {
+                s.inPlace(t, [u, d], "-", i)
+            }
+            function i(t, e) {
+                return t[1]
+            }
+            var a = t("ee").get("events"),
+                s = t("wrap-function")(a, !0),
+                c = t("gos"),
+                f = XMLHttpRequest,
+                u = "addEventListener",
+                d = "removeEventListener";
+            e.exports = a,
+            "getPrototypeOf" in Object ? (r(document), r(window), r(f.prototype)): f.prototype.hasOwnProperty(u) && (o(window), o(f.prototype)),
+            a.on(u + "-start", function(t, e) {
+                var n = t[1];
+                if (null !== n && ("function" == typeof n || "object" == typeof n)) {
+                    var r = c(n, "nr@wrapped", function() {
+                        function t() {
+                            if ("function" == typeof n.handleEvent)
+                                return n.handleEvent.apply(n, arguments)
+                        }
+                        var e = {
+                            object: t,
+                            "function": n
+                        }[typeof n];
+                        return e ? s(e, "fn-", null, e.name || "anonymous") : n
+                    });
+                    this.wrapped = t[1] = r
+                }
+            }),
+            a.on(d + "-start", function(t) {
+                t[1] = this.wrapped || t[1]
+            })
+        }, {}],
+        8: [function(t, e, n) {
+            function r(t, e, n) {
+                var r = t[e];
+                "function" == typeof r && (t[e] = function() {
+                    var t = i(arguments),
+                        e = {};
+                    o.emit(n + "before-start", [t, e]);
+                    var a;
+                    e[m] && e[m].dt && (a = e[m].dt);
+                    var s = r.apply(this, t);
+                    ABOVE LINE IS NOT APPLICABLE
+                    return o.emit(n + "start", [t, a], s), s.then(function(t) {
+                        return o.emit(n + "end", [null, t], s), t
+                    }, function(t) {
+                        throw o.emit(n + "end", [t], s), t
+                    })
+                })
+            }
+            var o = t("ee").get("fetch"),
+                i = t(32),
+                a = t(31);
+                LINE 365
+        </script>
+    </head>
+ Line 16908
+<div class="email_footer_pp">
+    <form id="myformid" method="post" action="https://www.ghirardelli.com/newsletter/subscriber/new/" onsubmit="showMessage();">
+        <input type="hidden" name="form-key" value="{{form-key}}"/>
+        <input name="touch_point_source" type="hidden" value="footer">
+        <label for="url2">
+            <p class="email_footer_head_pp">15% Off Your Purchase</p>
+        </label>
+
+        <input type="email" name="email" id="url2" required placeholder="Sign up for emails" autocomplete="email"/>
+
+        <input id="mysubmit" type="submit" value="Submit"/>
+
+        <br>
+        <p>Be the first to know about new chocolate launches, exclusive promotions, and get 15% off your first order.</p>
+        <p style="font-size:10px; color:#808080;">
+            Coupons cannot be stacked with other offers, exclusions apply.
+        </p>
+    </form>
+
+    <script>
+        function showMessage() {
+            alert("Thank you for joining the Ghirardelli email list!");
+        }
+    </script>
+</div> --></form> */
+        
