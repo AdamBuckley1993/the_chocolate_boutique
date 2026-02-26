@@ -1,4 +1,200 @@
 body {
+  background: orange;
+  color: blue;
+  font-size: 1.5em;
+}
+
+h1 {
+  background-color: pink;
+  color: chocolate;
+  text-align: center;
+  padding: 8px;
+  margin: 8px;
+  border: 8px solid green;
+  font-family: arial;
+}
+
+#timetoggle {
+  background-color: red;
+  color: yellow;
+  border: 8px dashed purple;
+  margin: 8px;
+  padding: 8px;
+  font-size: 12px;
+}
+
+#timetoggle:hover {
+  background-color: magenta;
+  color: cyan;
+  border: 16px dashed chartreuse;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+#txt {
+  background-color: indigo;
+  color: darkorange;
+  border: 16px double darkblue;
+}
+
+.burger {
+  background-color: ivory;
+  color: tomato;
+  overflow: hidden;
+  font-family: georgia;
+  position: sticky;
+  top: 0;
+}
+
+.burger a {
+  float: left;
+  color: tomato;
+  display: block;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.burger a:hover {
+  background-color: fuchsia;
+  color: lightyellow;
+}
+
+.burger a.active {
+  background-color: #9966ff;
+  color: #66ffff;
+}
+
+.burger .cowmeat {
+  display: none;
+}
+
+@media screen and (max-width: 600px) {
+  .burger a:not(:first-child) {display: none;}
+  .burger a.cowmeat {
+    float: right;
+    display: block;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .burger.responsive {position: relative;}
+  .burger.responsive .cowmeat {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  .burger.responsive a {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+}
+
+.emailsubscription {
+  border: 8px solid salmon;
+  font-family: helvetica;
+  background-color: fuchsia;
+}
+
+.newslettertitle {
+  background-color: #660066;
+  color: #ccff33;
+  text-align: center;
+}
+
+.whysubscribetous {
+  background-color: #ccffff;
+  color: #993333;
+}
+
+.emailsubscriptionfield {
+  padding: 16px;
+  background-color: lightyellow;
+}
+
+.nameentry {
+  background-color: #9900cc;
+  color: #99ff33;
+}
+
+.emailentry {
+  background-color: #99ccff;
+  color: #ff9900;
+}
+
+.nameentry::placeholder {
+  color: orange;
+}
+
+.emailentry::placeholder {
+  color: yellow;
+}
+
+.subscriptioncheckbox {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 20px;
+  height: 20px;
+  background-color: #d2691e;
+  border: 4px solid olive;
+  border-radius: 8px;
+  color: #808000;
+  cursor: pointer;
+  vertical-align: middle;
+  position: relative;
+}
+
+.subscriptioncheckbox:checked::after {
+  content: "✔";
+  position: absolute;
+  top: -2px;
+  left: 2px;
+  color: #ffd700;
+  font-size: 16px;
+}
+
+.emailcheckbox {
+  background-color: #a0522d;
+  color: #ffd700;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-weight: bold;
+}
+
+.emailcheckbox input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.subscribe input[type="submit"] {
+  background-color: #006400;
+  color: #ff66ff;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1.1em;
+  font-weight: bold;
+  width: 100%;
+  transition: transform 0.2s, background-color 0.2s;
+}
+
+.subscribe input[type="submit"]:hover {
+  background-color: #008000;
+  transform: scale(1.02);
+}
+
+.newsletter {
+  color: violet;
+}
+
+/* Mostly AI crap
+body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
@@ -194,6 +390,7 @@ h1 {
 
 @media print {
     /* Hide the entire website UI */
+    /*
     body, header, nav, #time, #products, #custom-builder, #contact, #chat-bubble, #theme-toggle, #print-invoice-btn {
         background: white !important;
         color: black !important;
@@ -201,7 +398,7 @@ h1 {
         box-shadow: none !important;
     }
     
-    /* Hide everything EXCEPT the invoice section */
+    /* Hide everything EXCEPT the invoice section
     body > *:not(#custom-builder) {
         display: none !important;
     }
@@ -214,12 +411,12 @@ h1 {
         padding: 0 !important;
     }
 
-    /* Hide the checkboxes area on the receipt */
+    /* Hide the checkboxes area on the receipt
     #options-area, h2, p:first-of-type {
         display: none !important;
     }
 
-    /* Style the table for paper */
+    /* Style the table for paper
     table {
         border: 1px solid #000 !important;
         width: 100% !important;
@@ -235,4 +432,4 @@ h1 {
         text-transform: uppercase;
         letter-spacing: 2px;
     }
-}
+*/

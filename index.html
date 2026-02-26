@@ -8,6 +8,39 @@
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <script src="main.js" defer></script>
 </head>
+<!DOCTYPE html>
+<body onload="startTime()">
+  <div class="burger" id="yumyum">
+    <a href="https://codepen.io/Adam-Buckley/pen/NPRWyLr" class="hungry">Home</a>
+    <a href="#news">News</a>
+    <a href="#contact">Contact</a>
+    <a href="#about">About</a>
+    <a href="https://codepen.io/Adam-Buckley/pen/Kwgwdeo">Other</a>
+    <a href="javascript:void(0);" class="cowmeat" onclick="burgerTime()">
+    <i class="layers"></i>
+    </a>
+  </div>
+<h1>The Chocolate Boutique</h1>
+<p>Hello, and welcome to The Chocolate Boutique! Place your order in the area below and join our mailing list!</p>
+<button id="timetoggle" onclick="showTheTime()">Click me to toggle the time!</button>
+<div id="txt"></div>
+  <br>
+  <form action="/action_page.php">
+  <div class="emailsubscription">
+    <h2 class="newslettertitle">Subscribe to our newsletter!</h2>
+    <p class="whysubscribetous">We guarantee you the very best chocolates to be updated!</p>
+  </div>
+    
+    <div class="emailsubscriptionfield">
+      <input class="nameentry" type="text" placeholder="Name" placeholder name="name" required>
+      <input class="emailentry" type="text" placeholder="Email address" name="mail" required>
+      </input>
+    <label><input class="subscriptioncheckbox" type="checkbox" checked="checked" name="subscribe"><span class="newsletter">Daily Newsletter</span></label>
+    </div>
+  <div class="subscribe"><input type="submit" value="Subscribe"></div>
+  </form>
+</html>
+<!-- AI Crap in part
 <body>
     <div id="scroll-container">
         <div id="scroll-bar" style="height: 100%;
@@ -128,3 +161,4 @@
 </div>
 </body>
 </html>
+-->

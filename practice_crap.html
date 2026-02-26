@@ -7,6 +7,70 @@
     <body>
         <h1>Practice Crap</h1>
         <div class="welcome">Welcome to the Practice Crap!</div>
+        <p>This is all for practice.</p>
         <div id="abv">Here are some absolute values returned to be true or not.</div>
+        <br>
+        <br>
+        <a id="w3s" accesskey="w" href="https://www.w3schools.com/">W3Schools</a>
+        <div id="w3s">Here is the accesskey value.</div>
+        <p id="demo">Accesskey</p>
+        <script>const key = document.getElementById("w3s").accessKey;
+    document.getElementById("demo").innerHTML = "The accesskey is: " + key;
+    </script>
+    <br>
+    <div id="acos"></div>
+    <script>document.getElementById("acos").innerHTML = Math.acos(1);</script>
+    <div id ="acosh"></div>
+    <script>document.getElementById("acosh").innerHTML = Math.acosh(1);</script>
+    <input id="button1field" type="text" value="An input field">
+    <button id="button1">Button 1</button>
+    <p id="button1"></p>
+    <p id="demo"></p>
+    <script>function myFunction1() {
+    const element = document.activeElement.tagName;
+    document.getElementById("demo").innerHTML = element;
+    <!-- Come back to later -->
+}
+</script>
+<script>
+function letterSet() {
+const letters = new Set();
+    letters.add("a");
+    letters.add("b");
+    letters.add("c");
+    letters.add("c");
+
+    document.getElementById("demo").innerHTML = "The set has " + letters.size + " values.";
+}
+letterSet();
+
+document.addEventListener("click", myFunction);
+
+function myFunction() {
+    document.getElementById("demo").innerHTML = "Hello World!";
+}
+
+document.addEventListener("mouseover", myFunction1);
+document.addEventListener("click", myFunction2);
+document.addEventListener("mouseout", myFunction3);
+
+function myFunction1() {
+    document.getElementById("demo").innerHTML = "Moused over!";
+}
+
+function myFunction2() {
+    let p1 = 5;
+    let p2 = 7;
+    let result = p1 * p2;
+    document.getElementById("demo").innerHTML = "Clicked! <br>";
+    document.getElementById("demo").innerHTML = result;
+}
+
+function myFunction3() {
+    document.getElementById("demo").innerHTML = "Moused out! <br>";
+}
+
+
+</script>
     </body>
     </html>

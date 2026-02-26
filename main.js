@@ -1,3 +1,42 @@
+/*Success*/
+function startTime() {
+  const today = new Date(); 
+  let h = today.getHours();
+  let m = today.getMinutes();
+  let s = today.getSeconds();
+  m = checkTime(m);
+  s = checkTime(s);
+  document.getElementById('txt').innerHTML =  h + ":" + m + ":" + s;
+  setTimeout(startTime, 1000);
+}
+  
+function checkTime(i) {
+  if (i < 10) {i = "0" + i};
+  return i;
+}
+/*Function end*/
+
+/*Success!*/
+function showTheTime() {
+  var timeSeen = document.getElementById("txt");
+  if (timeSeen.style.display === "none") {
+    timeSeen.style.display = "block";
+  } else {
+    timeSeen.style.display = "none";
+  }
+}
+/*Function end*/
+
+function burgerTime() {
+  var beef = document.getElementById("yumyum");
+  if (beef.className === "burger") {
+    beef.className += " responsive";
+  } else {
+    beef.className = "burger";
+  }
+}
+
+/* Mostly AI crap
 let timerId = null;
 const btn = document.getElementById("time");
 const nav = document.getElementById("main-nav");
