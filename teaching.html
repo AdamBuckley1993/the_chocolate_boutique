@@ -141,3 +141,21 @@
 <script src="teaching.js"></script>
     </body>
 </html>
+
+<div class="featured-product">
+    <div class="product-badge">
+        something here
+    </div>
+
+    <button class="wishlist-btn" onclick="toggleWishlist(${product.id})">
+        <i class="far fa-heart"></i>
+    </button>
+
+    <img src="${product.image}" alt="${product.title}" class="product-image">
+    <div class="product-info">
+        <h4></h4>
+        <button class="product-price" onclick="addToCart(${product.id})">
+            $${product-price}
+        </button>
+    </div>
+</div>
