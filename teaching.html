@@ -138,9 +138,77 @@
         </div>
     </div>
 </div>
+<div class="checkout-overlay" id="checkoutOverlay">
+    <div class="checkout-container">
+        <div class="checkout-header">
+            <h2 class="checkout-title">Shopping Cart</h2>
+            <button class="close-btn" id="closeCheckout">&times;</button>
+        </div>
+
+        <div class="checkout-content" id="checkoutContent">
+            <div class="empty-cart">
+                <i class="fas fa-shopping-cart" style="font-size: 3rem; color: #e2e8f0; margin-bottom: 1rem;"></i>
+                <p>Your cart is empty</p>
+            </div>
+        </div>
+
+        <div class="checkout-footer" id="checkoutFooter" style="display: none;">
+            <div class="total-amount" id="totalAmount">Total: $0.00</div>
+            <button class="checkout-btn">Proceed to Checkout</button>
+        </div>
+    </div>
+</div>
 <script src="teaching.js"></script>
     </body>
 </html>
+
+<!--
+<div class="cart-item">
+    <img src="${item.image}" alt="${item.title}">
+    <div class="cart-item-info">
+        <div class="cart-item-title"></div>
+        <div class="cart-item-price"></div>
+        <div class="quantity-controls">
+            <button class="qty-btn" onclick="updateQuantity(${item.id}, -1)">-</button>
+            <span style="padding: 0 0.5rem;">${item.quantity}</span>
+            <button class="qty-btn" onclick="updateQuantity(${item.id}, 1)">+</button>
+            <button class="remove-btn" onclick="removeFromCart(${item.id})">Remove</button>
+        </div>
+    </div>
+</div>
+
+<div class="product-card">
+    <button class="wishlist-btn" onclick="toggleWishlist(${product.id})">
+        <i class="far fa-heart"></i>
+    </button>
+
+    <img src="${product.image}" alt="${product.title}" class="product-image">
+    <div class="product-info">
+        <h4>${product.title.substring(0, 40)}...</h4>
+        <p style="color: #64748b; font-size: 0.9rem; margin: 0.5rem 0;">
+            $${product.price}
+        </p>
+        <button class="add-to-cart-btn" onclick="addToCart(${product.id})">
+            Add to Cart
+        </button>
+    </div>
+</div>
+
+<div class="featured-product">
+        <div class="product-badge" ${index === 1 ? "dark" : ""}>something here</div>
+
+        <button class="wishlist-btn" onclick="toggleWishlist(${product.id})">
+            <i class="far fa-heart"></i>
+        </button>
+
+        <img src="${product.image}" alt="${product.title}" class="product-image">
+        <div class="product-info">
+            <h4>${product.title.substring(0, 30)}...</h4>
+            <button class="product-price ${index === 1 ? "dark" : ""}" onclick="addToCart(${product.id})">
+            $${product-price}
+            </button>
+        </div>
+    </div>
 
 <div class="featured-product">
     <div class="product-badge">
@@ -159,3 +227,6 @@
         </button>
     </div>
 </div>
+
+<div class="loading"><p>No products found</p></div>
+-->
