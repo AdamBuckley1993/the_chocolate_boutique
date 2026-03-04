@@ -1,36 +1,3 @@
-function abV() {
-    const abv1 = Math.abs(7.25);
-    const abv2 = Math.abs(-7.25);
-    const abv3 = Math.abs(null);
-    const abv4 = Math.abs("Hello");
-    const abv5 = Math.abs(2-3);
-    document.getElementById("abv").innerHTML = abv1 + "<br>" + abv2 + "<br>" + abv3 + "<br>" + abv4 + "<br>" + abv5;
-    abV.style.color = "yellow";
-
-    if (abv1 === 7.25) {
-        abv1.style.backgroundColor = "red";
-    }
-}
-abV();
-
-/*Works in HTML as JavaScript but not here*/
-function accessK() {
-    const key = document.getElementById("w3s").accessKey;
-    document.getElementById("demo").innerHTML = "The accesskey is: " + key;
-}
-accessK();
-
-function acos() {
-    document.getElementById("acos").innerHTML = Math.acos(1);
-}
-acos();
-
-function myFunction1() {
-    const element = document.activeElement.tagName;
-    document.getElementById("demo").innerHTML = element;
-}
-myFunction1();
-
 function myAbsoluteValueTestFunction() {
     var xAbsoluteValueTest = document.getElementById("myAbsoluteValueTestDIV");
     if (xAbsoluteValueTest.innerHTML === "Hello") {
@@ -44,17 +11,72 @@ function myAbsoluteValueTestFunction() {
     }
 }
 
+
+function myAccessKeyFunction() {
+    let xAccessKey = document.getElementById("w3sAccesskey").accessKey;
+    let xAccessKeyValue = document.getElementById("myAccesskeyDIV");
+    if (xAccessKeyValue.innerHTML === "Hello" || xAccessKeyValue.style.display === "none") {
+        xAccessKeyValue.style.display = "block";
+        xAccessKeyValue.innerHTML = xAccessKey;
+        xAccessKeyValue.style.backgroundColor = "green";
+        xAccessKeyValue.style.color = "#ff99ff";
+    } else {
+        xAccessKeyValue.style.display = "none";
+        xAccessKeyValue.innerHTML = "Hello";
+        xAccessKeyValue.style.backgroundColor = "darkorange";
+        xAccessKeyValue.style.color = "darkblue";
+    }
+}
+
+function myAcosFunction() {
+    let xAcos = document.getElementById("myArccosineDIV");
+    let xAcosValue = document.getElementById("myArccosineDIV");
+    if (xAcosValue.innerHTML === "Hello" || xAcosValue.style.display === "none") {
+        xAcosValue.style.display = "block";
+        xAcosValue.innerHTML = Math.acos(1);
+        xAcosValue.style.backgroundColor = "purple";
+        xAcos.style.color = "white";
+    } else {
+        xAcosValue.style.display = "none";
+        xAcosValue.innerHTML = "Hello";
+        xAcosValue.style.backgroundColor = "darkorange";
+        xAcosValue.style.color = "darkblue";
+    }
+}
+
 /* From outside sources to help */
 
 function myAbsoluteValueFunction() {
-  var x = document.getElementById("myAbsoluteValueDIV");
-  if (x.innerHTML === "Hello") {
-    x.innerHTML = "Swapped text!";
-    x.style.backgroundColor = "red";
-    x.style.color = "white";
+  var xAbsoluteValue = document.getElementById("myAbsoluteValueDIV");
+  if (xAbsoluteValue.innerHTML === "Hello") {
+    xAbsoluteValue.innerHTML = "Swapped text!";
+    xAbsoluteValue.style.backgroundColor = "red";
+    xAbsoluteValue.style.color = "white";
   } else {
-    x.innerHTML = "Hello";
-    x.style.backgroundColor = "darkorange";
-    x.style.color = "darkblue";
+    xAbsoluteValue.innerHTML = "Hello";
+    xAbsoluteValue.style.backgroundColor = "darkorange";
+    xAbsoluteValue.style.color = "darkblue";
   }
 }
+
+function accessKeyTest() {
+    let accessKeyTestValue = document.getElementById("w3s").accessKey;
+    let accessKeyTestDIV = document.getElementById("demo");
+    if (accessKeyTestDIV.innerHTML === "Hello" || accessKeyTestDIV.style.display === "none") {
+        accessKeyTestDIV.style.display = "block";
+        accessKeyTestDIV.innerHTML = accessKeyTestValue;
+        accessKeyTestDIV.style.backgroundColor = "green";
+        accessKeyTestDIV.style.color = "#ff99ff";
+    } else {
+        accessKeyTestDIV.style.display = "none";
+        accessKeyTestDIV.innerHTML = "Hello";
+        accessKeyTestDIV.style.backgroundColor = "darkorange";
+        accessKeyTestDIV.style.color = "darkblue";
+    }
+}
+
+let key = document.getElementById("w3s").accessKey;
+document.getElementById("demo").innerHTML = key;
+
+let xAccessKeyTest = document.getElementById("w3sAccesskey").accessKey;
+document.getElementById("myAccesskeyDIV").innerHTML = xAccessKeyTest;
