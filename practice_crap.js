@@ -33,7 +33,7 @@ function myAcosFunction() {
     let xAcosValue = document.getElementById("myArccosineDIV");
     if (xAcosValue.innerHTML === "Hello" || xAcosValue.style.display === "none") {
         xAcosValue.style.display = "block";
-        xAcosValue.innerHTML = Math.acos(1);
+        xAcosValue.innerHTML = Math.acos(-1);
         xAcosValue.style.backgroundColor = "purple";
         xAcos.style.color = "white";
     } else {
