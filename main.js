@@ -27,6 +27,7 @@ function showTheTime() {
 }
 /*Function end*/
 
+/*Success!*/
 function burgerTime() {
   var beef = document.getElementById("yumyum");
   if (beef.className === "burger") {
@@ -35,6 +36,68 @@ function burgerTime() {
     beef.className = "burger";
   }
 }
+/*Function end*/
+
+function subscribe() {
+    const subscribeText = document.getElementById("txt");
+    if (subscribeText.innerHTML === "") {
+        subscribeText.innerHTML = "Must fill out form to subscribe!";
+    } else {
+        (subscribeText.innerHTML === "Hello")
+        subscribeText.innerHTML = "Subscribed!";
+        subscribeText.style.color = "green";
+    }
+}
+
+
+const welcomeModal = document.getElementById("myWelcomeModal");
+const welcomeButton = document.getElementById("myWelcomeBtn");
+const welcomeSpan = document.getElementsByClassName("closeWelcome")[0];
+
+welcomeButton.onclick = function() {
+    welcomeModal.style.display = "block";
+}
+
+welcomeSpan.onclick = function() {
+    welcomeModal.style.display = "none";
+}
+
+window.onclick = function(event){
+    if (event.target == welcomeModal) {
+        welcomeModal.style.display = "none";
+    } if (event.target == loginOrOut) {
+        loginOrOut.style.display = "none";
+    }
+}
+
+/*Not sure about yet
+
+const logInOfferModal = document.getElementById("myLoginOrGuestModal");
+const guestOffer = document.getElementById("guestOffer");
+const closePathChoice = document.getElementsByClassName("closePathChoice")[0];
+const loginOrOut = document.getElementById("loginOrOut");
+
+logInOfferModal.onclick = function loginOrGuest() {
+    loginOrOut.style.display = "block";
+}
+
+guestOffer.onclick = function loginOrGuest() {
+    loginOrOut.style.display = "block";
+}
+
+closePathChoice.onclick = function loginOrGuest() {
+    loginOrOut.style.display = "none";
+}
+
+function loginOrGuestSection() {
+  var loginOrOutSection = document.getElementById("loginOrOut");
+  if (loginOrOutSection.style.display === "none") {
+    loginOrOutSection.style.display = "block";
+  } else {
+    loginOrOutSection.style.display = "none";
+  }
+}
+*/
 
 /* Mostly AI crap
 let timerId = null;
@@ -655,6 +718,13 @@ window.onload = () => {
     renderCatalog();
     document.getElementById("cart-count").textContent = count;
 };
+
+const hamburger = document.getElementById("hamburger");
+
+hamburger.addEventListener("click", function() {
+    hamburger.classList.toggle("active");
+});
+
 
 /* GHIRARDELLI PRACTICE FOR WEB MODELING
  <!DOCTYPE html>

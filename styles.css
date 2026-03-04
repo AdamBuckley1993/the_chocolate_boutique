@@ -193,6 +193,96 @@ h1 {
   color: violet;
 }
 
+.subscribe {
+  border: none;
+}
+
+.welcomeBeautiful {
+  background-color: forestgreen;
+  color: darksalmon;
+}
+
+.logowelcome {
+  background-color: rebeccapurple;
+  color: skyblue;
+}
+
+.welcomeModal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+.welcome-modal-content {
+  background-color: darkorange;
+  color: darkblue;
+  margin: auto;
+  padding: 20px;
+  border: 2px solid fuchsia;
+  width: 80%;
+}
+
+.closeWelcome {
+  color: #663399;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.closeWelcome:hover,
+.closeWelcome:focus {
+  color: seagreen;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.loginOrGuestModal {
+  background-color: darkorange;
+  color: darkblue;
+  z-index: 1;
+  display: none;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+
+#loginOffer {
+  background-color: #663300;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+#guestOffer {
+  background-color: black;
+  color: lightgray;
+  border: none;
+  cursor: pointer;
+}
+
+.closePathChoice {
+  color: gray;
+  float: right;
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.closePathChoice:hover,
+.closePathChoice:focus {
+  color: rgb(207, 64, 8);
+  text-decoration: none;
+  cursor: pointer;
+}
 
 /* Mostly AI crap
 body {
@@ -433,4 +523,37 @@ h1 {
         text-transform: uppercase;
         letter-spacing: 2px;
     }
+
+.hamburger {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 30px;
+  height: 25px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+}
+
+.bar {
+  width: 100%;
+  height: 4px;
+  background-color: #333;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+.hamburger.active .bar:nth-child(1) {
+  transform: rotate(45deg) translateY(5px);
+}
+
+.hamburger.active .bar:nth-child(2) {
+  opacity: 0;
+}
+
+.hamburger.active .bar:nth-child(3) {
+  transform: rotate(-45deg) translateY(-5px);
+}
+
 */

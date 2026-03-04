@@ -14,8 +14,9 @@
     <a href="#contact">Contact</a>
     <a href="#about">About</a>
     <a href="https://codepen.io/Adam-Buckley/pen/Kwgwdeo">Other</a>
+    <a href="#login">Login</a>
     <a href="javascript:void(0);" class="cowmeat" onclick="burgerTime()">
-    <i class="layers"></i>
+    <i class="layers">&#9776</i>
     </a>
   </div>
 <h1>The Chocolate Boutique</h1>
@@ -35,8 +36,30 @@
       </input>
     <label><input class="subscriptioncheckbox" type="checkbox" checked="checked" name="subscribe"><span class="newsletter">Daily Newsletter</span></label>
     </div>
-  <div class="subscribe"><input type="submit" value="Subscribe"></div>
+  <button class="subscribe" onclick="subscribeText()"><input type="submit" value="Subscribe"></button>
   </form>
+  <br>
+  
+  <button id="myWelcomeBtn" class="welcomeBeautiful" onclick="welcomeHome()">Click Me to Be Welcomed Here!</button>
+
+  <div id="myWelcomeModal" class="welcomeModal">
+
+    <div class="welcome-modal-content">
+    <span class="closeWelcome">&times;</span>
+    <p class="welcomemessage">Welcome to <span class="logowelcome">The Chocolate Boutique!</span> We hope you find the perfect chocolate treat for you!</p>
+  </div>
+
+</div>
+
+<div id="myLoginOrGuestModal" class="loginOrGuestModal">
+    <div class="loginOrGuest-modal-content">
+        <span class="closePathChoice">&times;</span>
+    <button id="loginOffer">Click here to log in and order with benefits </button> 
+    <span>... </span><button id="guestOffer">or click here as a guest!</button>
+    </div>
+</div>
+
+</body>
 </html>
 
 <!-- AI Crap in part
@@ -161,4 +184,10 @@
 </div>
 </body>
 </html>
+
+<button class="hamburger">
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+    </button>
 -->

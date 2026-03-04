@@ -30,3 +30,31 @@ function myFunction1() {
     document.getElementById("demo").innerHTML = element;
 }
 myFunction1();
+
+function myAbsoluteValueTestFunction() {
+    var xAbsoluteValueTest = document.getElementById("myAbsoluteValueTestDIV");
+    if (xAbsoluteValueTest.innerHTML === "Hello") {
+        xAbsoluteValueTest.style.display = "block";
+        xAbsoluteValueTest.innerHTML = Math.abs(-4.7);
+        xAbsoluteValueTest.style.backgroundColor = "red";
+        xAbsoluteValueTest.style.color = "white";
+    } else {
+        xAbsoluteValueTest.style.display = "none";
+        xAbsoluteValueTest.innerHTML = "Hello";
+    }
+}
+
+/* From outside sources to help */
+
+function myAbsoluteValueFunction() {
+  var x = document.getElementById("myAbsoluteValueDIV");
+  if (x.innerHTML === "Hello") {
+    x.innerHTML = "Swapped text!";
+    x.style.backgroundColor = "red";
+    x.style.color = "white";
+  } else {
+    x.innerHTML = "Hello";
+    x.style.backgroundColor = "darkorange";
+    x.style.color = "darkblue";
+  }
+}
