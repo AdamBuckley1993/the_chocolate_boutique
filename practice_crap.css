@@ -80,3 +80,13 @@ h2 {
     height: 200px;
     width: 300px;
 }
+
+.ostrichImage {
+    background-color: lightgreen;
+    color: darkred;
+    border: 8px double #ff6600;
+    border-radius: 20px;
+    height: 200px;
+    width: 300px;
+} 
+
