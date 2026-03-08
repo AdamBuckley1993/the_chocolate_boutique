@@ -284,6 +284,15 @@ h1 {
   cursor: pointer;
 }
 
+.ghirardelliDarkChocolateImage {
+    background-color: lightyellow;
+    color: darkred;
+    border: 8px double #ff6600;
+    border-radius: 20px;
+    height: 200px;
+    width: 300px;
+}
+
 /* Mostly AI crap
 body {
     font-family: Arial, sans-serif;
