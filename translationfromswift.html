@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cupcake Corner</title>
+    <link rel="stylesheet" href="translationfromswift.css">
+</head>
+<body id="app-background">
+    <div class="container">
+        <h1>Cupcake Corner</h1>
+
+        <!-- Section 1: Selection -->
+        <div class="section orange-section">
+            <label for="type">Select your cupcake type</label>
+            <select id="type" onchange="updateUI()">
+                <option value="0">Chocolate</option>
+                <option value="1">Red Velvet</option>
+                <option value="2">Mint</option>
+                <option value="3">Strawberry</option>
+                <option value="4">Gray Vanilla</option>
+                <option value="5">Blueberry</option>
+                <option value="6">Yellow Lemon</option>
+                <option value="7">Orange Zest</option>
+            </select>
+
+            <div class="stepper">
+                <span>Number of cakes: <span id="quantity-text">3</span></span>
+                <div class="buttons">
+                    <button onclick="changeQuantity(-1)">-</button>
+                    <button onclick="changeQuantity(1)">+</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 2: Customization -->
+        <div class="section blue-section">
+            <div class="row">
+                <label>Any special requests?</label>
+                <input type="checkbox" id="specialRequest" onchange="toggleSpecial()">
+            </div>
+            
+            <div id="extra-options" class="hidden">
+                <div class="row">
+                    <label>Add extra frosting</label>
+                    <input type="checkbox">
+                </div>
+                <div class="row">
+                    <label>Add extra sprinkles</label>
+                    <input type="checkbox">
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 3: Navigation -->
+        <div class="section green-section navigation">
+            <span>Delivery details</span>
+            <span class="arrow">→</span>
+        </div>
+    </div>
+
+    <script src="translationfromswift.js"></script>
+</body>
+</html>
