@@ -72,3 +72,7 @@ def login():
 
 if __name__ == '__main__':
     app.run(debug=True)
+
+@app.route('/admin/locations')
+def get_locations(): 
+    return jsonify({"locations": ["NYC", "London", "Paris"]})

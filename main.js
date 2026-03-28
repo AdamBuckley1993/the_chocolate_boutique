@@ -165,6 +165,46 @@ window.onload = function() {
     }
 };
 
+const adminData = {
+    recent: "<h3>Pending:</h3><ul><li>Order #992 - 2x Dark Truffle</li><li>Order #993 - 5x Milk Sea Salt</li></ul>",
+    history: "<h3>Completed Today:</h3><ul><li>Order #990 - $15.00</li><li>Order #991 - $22.50</li></ul>",
+    locations: "<h3>Active Deliveries:</h3><p>📍 New York, NY</p><p>📍 London, UK</p>"
+};
+
+function toggleAdminSection(section) {
+    const display = document.getElementById("admin-content");
+
+    display.innerHTML = adminData[section];
+}
+
+function checkAdminAccess() {
+    const role = localStorage.getItem("userRole");
+    if (role === "admin") {
+        document.getElementById("admin-dashboard").style.display = "block";
+        toggleAdminSection('recent');
+    }
+}
+
+function onLoginSuccess() {
+    localStorage.setItem("currentUser", user);
+    localStorage.setItem("userRole", role);
+
+    updateUserInterface(user, role);
+}
+
+function updateUserInterface() {
+    document.getElementById("user-header").style.display = "block";
+    document.getElementById("welcome-text").innerText = "Welcome, " + username + "!";
+
+    if (role === "admin") {
+        const adminSection = document.getElementById("admin-dashboard");
+        if (adminSection) {
+            adminSection.style.display = "block";
+            toggleAdminSection('recent');
+        }
+    }
+}
+
 /* For Python password security to be figured out
 
 const API_URL = "http://127.0.0.1:5000";

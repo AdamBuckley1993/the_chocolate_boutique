@@ -128,7 +128,7 @@
 <div id="user-header" style="display: none; padding: 10px; background: rgba(255,255,255,0.2); border-radius: 10px; margin-bottom: 20px;">
     <span id="welcome-text"></span>
     <button onclick="logout()" style="background: brown; color: white; float: right;">Logout</button>
-    <button id="admin-btn" style="display: none; background: gold; color: black; margin-right: 10px;">Admin Dashboard</button>
+    <button id="admin-btn" style="display: none; background: gold; color: black; margin-right: 10px;" onclick="">Admin Dashboard</button>
 </div>
 
 <div id="register-container" style="display:none;" class="order-panel">
@@ -146,6 +146,20 @@
     <p>Enter your email to receive a reset link.</p>
     <input type="email" id="forgot-mail" placeholder="Email">
     <button onclick="sendResetEmail()">Send Reset Link</button>
+</div>
+
+<div id="admin-dashboard" class="order-panel" style="display:none;">
+    <h1>Admin Dashboard</h1>
+
+    <div class="admin-nav">
+        <button onclick="toggleAdminSection('recent')">Recent Orders</button>
+        <button onclick="toggleAdminSection('history')">Order History</button>
+        <button onclick="toggleAdminSection('locations')">User Locations</button>
+    </div>
+
+    <div id="admin-content" class="admin-display">
+
+    </div>
 </div>
 
 </body>
