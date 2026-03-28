@@ -9,6 +9,8 @@ function startTime() {
   document.getElementById('txt').innerHTML =  h + ":" + m + ":" + s;
   setTimeout(startTime, 1000);
 }
+
+startTime();
   
 function checkTime(i) {
   if (i < 10) {i = "0" + i};
@@ -38,10 +40,38 @@ function burgerTime() {
 }
 /*Function end*/
 
+let totalAmount = 0;
+
+function addToReceipt() {
+    const select = document.getElementById("chocolate-select");
+    const quantityInput = document.getElementById("quantity-input");
+
+    const name = select.value;
+    const price = parseFloat(select.options[select.selectedIndex].getAttribute("data-price"));
+    const quantity = parseInt(quantityInput.value);
+
+    const itemTotal = price * quantity;
+    totalAmount += itemTotal;
+
+    const receiptList = document.getElementById("receipt-list");
+    const li = document.createElement("li");
+    li.innerHTML = `<span>${quantity}x ${name}</span> <span style="float:right">$${itemTotal.toFixed(2)}</span>`;
+    receiptList.appendChild(li);
+
+    document.getElementById("grand-total").innerText = totalAmount.toFixed(2);
+
+    quantityInput.value = 1;
+}
+
+function printReceipt() {
+    window.print();
+}
+
 function subscribe() {
-    const subscribeText = document.getElementById("txt");
+    const subscribeText = document.getElementById("subscribehere");
     if (subscribeText.innerHTML === "") {
         subscribeText.innerHTML = "Must fill out form to subscribe!";
+        subscribeText.style.color = "red";
     } else {
         (subscribeText.innerHTML === "Hello")
         subscribeText.innerHTML = "Subscribed!";
@@ -69,6 +99,110 @@ window.onclick = function(event){
         loginOrOut.style.display = "none";
     }
 }
+
+function openChocolateModal(chocolateTitle, chocolateDescription, chocolateImageSrc) {
+    document.getElementById("chocolate-modal-title").innerText = chocolateTitle;
+    document.getElementById("chocolate-modal-description").innerText = chocolateDescription;
+    document.getElementById("chocolate-modal-img").src = chocolateImageSrc;
+    document.getElementById("chocolateModal").style.display = "block";
+}
+
+function closeChocolateModal() {
+    document.getElementById("chocolateModal").style.display = "none";
+}
+
+window.onclick = function(event) {
+    let chocolateModal = document.getElementById("chocolateModal");
+    if (event.target == chocolateModal) {
+        chocolateModal.style.display = "none";
+    }
+}
+
+const users = {
+    "admin": { password: "123", role: "admin" },
+    "guest": { password: "456", role: "user" }
+};
+
+function login() {
+    const userIn = document.getElementById("username").value;
+    const passIn = document.getElementById("password").value;
+    const msg = document.getElementById("login-msg");
+
+    if (users[userIn] && users[userIn].password === passIn) {
+        localStorage.setItem("currentUser", userIn);
+        localStorage.setItem("userRole", users[userIn].role);
+        msg.style.color = "green";
+
+        showInterface(userIn, users[userIn].role);
+        msg.innerText = `Welcome, ${userIn}! You are logged in as ${users[userIn].role}.`;
+    } else {
+        msg.style.color = "red";
+        msg.innerText = "Invalid credentials!";
+    }
+}
+
+function showInterface(username, role) {
+    document.getElementById("login-container").style.display = "none";
+    document.getElementById("user-header").style.display = "block";
+    document.getElementById("welcome-text").innerText = "Welcome, " + username + "!";
+
+    if (role === "admin") {
+        document.getElementById("admin-btn").style.display = "inline-block";
+    }
+}
+
+function logout() {
+    localStorage.removeItem("currentUser");
+    localStorage.removeItem("userRole");
+    location.reload();
+}
+
+window.onload = function() {
+    const savedUser = localStorage.getItem("currentUser");
+    const savedRole = localStorage.getItem("userRole");
+    if (savedUser) {
+        showInterface(savedUser, savedRole);
+    }
+};
+
+/* For Python password security to be figured out
+
+const API_URL = "http://127.0.0.1:5000";
+
+async function register() {
+    const user = document.getElementById("reg-username").value;
+    const email = document.getElementById("reg-email").value;
+    const pass = document.getElementById("reg-password").value;
+
+    const response = await fetch(`${API_URL}/register`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" }, 
+        body: JSON.stringify({ username: user, email: email, password: pass })
+    });
+
+    const data = await response.json();
+    alert(data.message);
+}
+
+async function login() {
+    const user = document.getElementById("username").value;
+    const pass = document.getElementById("password").value;
+
+    const response = await fetch(`${API_URL}/login`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ username: user, password: pass })
+    });
+
+    const data = await response.json();
+    if (response.ok) {
+        localStorage.setItem("userRole", data.role);
+        showInterface(user, data.role);
+    } else {
+        document.getElementById("login-msg").innerText = data.message;
+    }
+}
+    */
 
 /*Not sure about yet
 

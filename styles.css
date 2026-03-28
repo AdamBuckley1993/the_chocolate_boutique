@@ -293,6 +293,164 @@ h1 {
     width: 300px;
 }
 
+.regularChocolateBarImage {
+    background-color: lightyellow;
+    color: darkred;
+    border: 8px double #ff6600;
+    border-radius: 20px;
+    height: 200px;
+    width: 300px;
+}
+
+.orderplacing {
+    background-color: #ffcc99;
+    color: #660033;
+    border: 8px dashed #ff6600;
+    border-radius: 20px;
+    height: 200px;
+    width: 300px;
+    margin: 20px auto;
+    text-align: center;
+    line-height: 200px;
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.orders {
+  background-color: green;
+  color: red;
+  font-size: 10px;
+}
+
+.shop-container {
+  display: flex;
+  gap: 20px;
+  padding: 20px;
+}
+
+.order-panel, .receipt-panel {
+  background: rgba(255, 255, 255, 0.2); /* Semi-transparent white */
+  padding: 20px;
+  border-radius: 15px;
+  backdrop-filter: blur(10px);
+}
+
+.receipt-panel {
+  width: 300px;
+  border: 2px dashed brown;
+}
+
+#receipt-list {
+  list-style: none;
+  padding: 0;
+}
+
+.addtoreceipt {
+  background-color: brown;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* Standard Screen Styles */
+@media screen {
+  body { background-color: orange; }
+  .no-print { display: block; }
+}
+
+/* Print-Only Styles */
+@media print {
+  /* Hide the entire ordering panel and the print button itself */
+  .order-panel, .no-print {
+    display: none !important;
+  }
+
+  /* Make the background white to save ink */
+  body {
+    background: white !important;
+    color: black;
+  }
+
+  /* Center the receipt on the printed page */
+  #printable-receipt {
+    width: 100%;
+    border: none;
+    padding: 0;
+    margin: 0;
+    background: none;
+  }
+  
+  /* Remove browser-added headers/footers */
+  @page {
+    margin: 0.5in;
+  }
+}
+
+.chocolateModalClass {
+  display: none; /* Hidden by default */
+  position: fixed;
+  z-index: 1000;
+  left: 0; top: 0;
+  width: 100%; height: 100%;
+  background-color: rgba(0,0,0,0.7); /* Dark background overlay */
+}
+
+.chocolate-modal-content {
+  background-color: darkorange;
+  color: darkblue;
+  margin: 10% auto;
+  padding: 20px;
+  width: 80%;
+  max-width: 400px;
+  border-radius: 15px;
+  text-align: center;
+  position: relative;
+}
+
+.close-chocolate-modal {
+  position: absolute;
+  right: 15px; top: 10px;
+  font-size: 28px;
+  cursor: pointer;
+}
+
+.auth-container {
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    max-width: 350px;
+    margin: 50px auto;
+    text-align: center;
+}
+
+input {
+    width: 90%;
+    padding: 12px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.8);
+}
+
+button.auth-btn {
+    background: #5D4037; /* Rich Chocolate Brown */
+    color: white;
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+button.auth-btn:hover {
+    background: #3E2723; /* Darker Chocolate Brown */
+}
+
 /* Mostly AI crap
 body {
     font-family: Arial, sans-serif;

@@ -36,7 +36,7 @@
       </input>
     <label><input class="subscriptioncheckbox" type="checkbox" checked="checked" name="subscribe"><span class="newsletter">Daily Newsletter</span></label>
     </div>
-  <button class="subscribe" onclick="subscribeText()"><input type="submit" value="Subscribe"></button>
+  <button class="subscribe" id="subscribehere" onclick="subscribeText()"><input type="submit" value="Subscribe"></button>
   </form>
   <br>
   
@@ -60,6 +60,93 @@
 </div>
 
 <img src="ghirardelli_72%_dark_chocolate.jpeg" alt="Ghirardelli 72% Dark Chocolate" class="ghirardelliDarkChocolateImage">
+<img src="chocolatebar.jpg" alt="regular chocolate bar" class="regularChocolateBarImage">
+
+<div class="orderplacing">
+    <div class="orderplacingcontent">
+        <p class="orders">Place your order now!</p>
+    </div>
+</div>
+
+<div class="shop-container">
+  <!-- Ordering Section -->
+  <div class="order-panel">
+    <h2>Choose Your Chocolates</h2>
+    <select id="chocolate-select">
+      <option value="Dark Truffle" data-price="2.50">Dark Truffle - $2.50</option>
+      <option value="Milk Sea Salt" data-price="2.25">Milk Sea Salt - $2.25</option>
+      <option value="White Raspberry" data-price="2.75">White Raspberry - $2.75</option>
+      <option value="Caramel Praline" data-price="3.00">Caramel Praline - $3.00</option>
+    </select>
+    
+    <input type="number" id="quantity-input" value="1" min="1">
+    <button class="addtoreceipt" onclick="addToReceipt()">Add to Receipt</button>
+  </div>
+
+<div id="chocolateModal" class="chocolateModalClass">
+    <div class="chocolate-modal-content">
+        <span class="close-chocolate-modal" onclick="closeChocolateModal()">&times;</span>
+        <img id="chocolate-modal-img" src="chocolatebar.jpg" alt="Chocolate Photo" style="width:100%; border-radius:10px;">
+        <h2 id="chocolate-modal-title"></h2>
+        <p id="chocolate-modal-description"></p>
+    </div>
+</div>
+
+<div class="chocolate-item" onclick="openChocolateModal('Dark Truffle', 'Yummy, very dark and bold!', 'chocolatebar.jpg')">View Dark Truffle Details</div>
+<div class="chocolate-item" onclick="openChocolateModal('Milk Sea Salt', 'Smooth milk chocolate with a pinch of sea salt.', 'milk_salt.jpg')">
+  <p>View Milk Sea Salt Details</p>
+</div>
+<div class="chocolate-item" onclick="openChocolateModal('White Raspberry', 'Creamy white chocolate with raspberry bits.', 'white_raspberry.jpg')">
+  <p>View White Raspberry Details</p>
+</div>
+<div class="chocolate-item" onclick="openChocolateModal('Caramel Praline', 'Rich caramel with crunchy praline pieces.', 'caramel_praline.jpg')">
+  <p>View Caramel Praline Details</p>
+</div>
+
+  <!-- Real-Time Receipt -->
+  <div class="receipt-panel">
+    <h3>Current Receipt</h3>
+    <ul id="receipt-list">
+      <!-- Items will appear here dynamically -->
+    </ul>
+    <hr>
+    <div class="receipt-total">
+      <strong>Total: $<span id="grand-total">0.00</span></strong>
+    </div>
+    <button type="button" class="no-print" onclick="printReceipt();">Print Receipt</button>
+  </div>
+</div>
+
+<div id="login-container" class="order-panel">
+    <h2>Login</h2>
+    <input type="text" id="username" placeholder="Username">
+    <input type="password" id="password" placeholder="Password">
+    <button onclick="login()">Login</button>
+    <p id="login-msg" style="color: red;"></p>
+</div>
+
+<div id="user-header" style="display: none; padding: 10px; background: rgba(255,255,255,0.2); border-radius: 10px; margin-bottom: 20px;">
+    <span id="welcome-text"></span>
+    <button onclick="logout()" style="background: brown; color: white; float: right;">Logout</button>
+    <button id="admin-btn" style="display: none; background: gold; color: black; margin-right: 10px;">Admin Dashboard</button>
+</div>
+
+<div id="register-container" style="display:none;" class="order-panel">
+    <h2>Create Account</h2>
+    <input type="text" id="reg-username" placeholder="Choose Username">
+    <input type="email" id="reg-email" placeholder="Email Address">
+    <input type="password" id="reg-password" placeholder="Create Password">
+    <button onclick="register()">Sign Up</button>
+</div>
+
+<p><a href="#" onclick="showForgotForm()">Forgot Password?</a></p>
+
+<div id="forgot-container" style="display:none;" class="order-panel">
+    <h2>Reset Password</h2>
+    <p>Enter your email to receive a reset link.</p>
+    <input type="email" id="forgot-mail" placeholder="Email">
+    <button onclick="sendResetEmail()">Send Reset Link</button>
+</div>
 
 </body>
 </html>
