@@ -103,6 +103,8 @@
   <p>View Caramel Praline Details</p>
 </div>
 
+<button type="button" class="submit-order-btn" onclick="processCheckout()">Submit Order and Get Receipt</button>
+
   <!-- Real-Time Receipt -->
   <div class="receipt-panel">
     <h3>Current Receipt</h3>
@@ -159,6 +161,16 @@
 
     <div id="admin-content" class="admin-display">
 
+    </div>
+</div>
+
+<div id="thankYouModal" class="chocolateModalClass" style="display: none;">
+    <div class="chocolate-modal-content">
+        <h2 style="background-color: darkcyan; color: darkkhaki;">Thank you for your order! 🍫</h2>
+        <p>Your chocolate is being prepared.</p>
+        <hr>
+        <p>Invoice Number: <strong id="display-invoice" style="font-weight:bold; background-color: fuchsia; color: brown;"></strong></p>
+        <button onclick="closeThankYouModal()" class="auth-btn">Close</button>
     </div>
 </div>
 

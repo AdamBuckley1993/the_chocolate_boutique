@@ -482,4 +482,19 @@ button.auth-btn:hover {
     background-color: green;
     color: red;
     font-size: 1em;
+    text-align: center;
+}
+
+.profits {
+    background-color: darkorange;
+    color: darkblue;
+    font-size: 1.5em;
+    text-align: center;
+    border: 8px solid lightyellow;
+}
+
+.financesandprofit {
+    background-color: black;
+    color: white;
+    border: 8px solid gray;
 }

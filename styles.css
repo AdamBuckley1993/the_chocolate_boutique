@@ -478,6 +478,49 @@ button.auth-btn:hover {
     min-height: 200px;
 }
 
+.submit-order-btn {
+    background-color: #5D4037; /* Rich Brown */
+    color: white;
+    font-size: 1.2rem;
+    font-weight: bold;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 20px;
+    transition: transform 0.2s;
+}
+
+.submit-order-btn:hover {
+    background-color: #3e2723;
+    transform: scale(1.02);
+}
+
+.submit-order-btn:active {
+    transform: scale(0.98);
+}
+
+.admin-section {
+    background-color: green;
+    color: red;
+    font-size: 1em;
+    text-align: center;
+}
+
+.profits {
+    background-color: darkorange;
+    color: darkblue;
+    font-size: 1.5em;
+    text-align: center;
+    border: 8px solid lightyellow;
+}
+
+.financesandprofit {
+    background-color: black;
+    color: white;
+    border: 8px solid gray;
+}
 
 /* Mostly AI crap
 body {
