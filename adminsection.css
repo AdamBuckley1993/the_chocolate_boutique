@@ -1,3 +1,485 @@
 body {
-    background-color: orange;
+  background: orange;
+  color: blue;
+  font-size: 1.5em;
+}
+
+h1 {
+  background-color: pink;
+  color: chocolate;
+  text-align: center;
+  padding: 8px;
+  margin: 8px;
+  border: 8px solid green;
+  font-family: arial;
+}
+
+#timetoggle {
+  background-color: red;
+  color: yellow;
+  border: 8px dashed purple;
+  margin: 8px;
+  padding: 8px;
+  font-size: 12px;
+}
+
+#timetoggle:hover {
+  background-color: magenta;
+  color: cyan;
+  border: 16px dashed chartreuse;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+#txt {
+  background-color: indigo;
+  color: darkorange;
+  border: 16px double darkblue;
+}
+
+.burger {
+  background-color: ivory;
+  color: tomato;
+  overflow: hidden;
+  font-family: georgia;
+  position: sticky;
+  top: 0;
+}
+
+.burger a {
+  float: left;
+  color: tomato;
+  display: block;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 17px;
+}
+
+.burger a:hover {
+  background-color: fuchsia;
+  color: lightyellow;
+}
+
+.burger a.active {
+  background-color: #9966ff;
+  color: #66ffff;
+}
+
+.burger .cowmeat {
+  display: none;
+}
+
+@media screen and (max-width: 600px) {
+  .burger a:not(:first-child) {display: none;}
+  .burger a.cowmeat {
+    float: right;
+    display: block;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .burger.responsive {position: relative;}
+  .burger.responsive .cowmeat {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+  .burger.responsive a {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+}
+
+.emailsubscription {
+  border: 8px solid salmon;
+  font-family: helvetica;
+  background-color: fuchsia;
+}
+
+.newslettertitle {
+  background-color: #660066;
+  color: #ccff33;
+  text-align: center;
+}
+
+.whysubscribetous {
+  background-color: #ccffff;
+  color: #993333;
+}
+
+.emailsubscriptionfield {
+  padding: 16px;
+  background-color: lightyellow;
+}
+
+.nameentry {
+  background-color: #9900cc;
+  color: #99ff33;
+}
+
+.emailentry {
+  background-color: #99ccff;
+  color: #ff9900;
+}
+
+.nameentry::placeholder {
+  color: orange;
+}
+
+.emailentry::placeholder {
+  color: yellow;
+}
+
+.subscriptioncheckbox {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 20px;
+  height: 20px;
+  background-color: #d2691e;
+  border: 4px solid olive;
+  border-radius: 8px;
+  color: #808000;
+  cursor: pointer;
+  vertical-align: middle;
+  position: relative;
+}
+
+.subscriptioncheckbox:checked::after {
+  content: "✔";
+  position: absolute;
+  top: -2px;
+  left: 2px;
+  color: #ffd700;
+  font-size: 16px;
+}
+
+.emailcheckbox {
+  background-color: #a0522d;
+  color: #ffd700;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-weight: bold;
+}
+
+.emailcheckbox input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.subscribe input[type="submit"] {
+  background-color: #006400;
+  color: #ff66ff;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1.1em;
+  font-weight: bold;
+  width: 100%;
+  transition: transform 0.2s, background-color 0.2s;
+}
+
+.subscribe input[type="submit"]:hover {
+  background-color: #008000;
+  transform: scale(1.02);
+}
+
+.newsletter {
+  color: violet;
+}
+
+.subscribe {
+  border: none;
+}
+
+.welcomeBeautiful {
+  background-color: forestgreen;
+  color: darksalmon;
+}
+
+.logowelcome {
+  background-color: rebeccapurple;
+  color: skyblue;
+}
+
+.welcomeModal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+.welcome-modal-content {
+  background-color: darkorange;
+  color: darkblue;
+  margin: auto;
+  padding: 20px;
+  border: 2px solid fuchsia;
+  width: 80%;
+}
+
+.closeWelcome {
+  color: #663399;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.closeWelcome:hover,
+.closeWelcome:focus {
+  color: seagreen;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.loginOrGuestModal {
+  background-color: darkorange;
+  color: darkblue;
+  z-index: 1;
+  display: none;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+
+#loginOffer {
+  background-color: #663300;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+#guestOffer {
+  background-color: black;
+  color: lightgray;
+  border: none;
+  cursor: pointer;
+}
+
+.closePathChoice {
+  color: gray;
+  float: right;
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.closePathChoice:hover,
+.closePathChoice:focus {
+  color: rgb(207, 64, 8);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.ghirardelliDarkChocolateImage {
+    background-color: lightyellow;
+    color: darkred;
+    border: 8px double #ff6600;
+    border-radius: 20px;
+    height: 200px;
+    width: 300px;
+}
+
+.regularChocolateBarImage {
+    background-color: lightyellow;
+    color: darkred;
+    border: 8px double #ff6600;
+    border-radius: 20px;
+    height: 200px;
+    width: 300px;
+}
+
+.orderplacing {
+    background-color: #ffcc99;
+    color: #660033;
+    border: 8px dashed #ff6600;
+    border-radius: 20px;
+    height: 200px;
+    width: 300px;
+    margin: 20px auto;
+    text-align: center;
+    line-height: 200px;
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.orders {
+  background-color: green;
+  color: red;
+  font-size: 10px;
+}
+
+.shop-container {
+  display: flex;
+  gap: 20px;
+  padding: 20px;
+}
+
+.order-panel, .receipt-panel {
+  background: rgba(255, 255, 255, 0.2); /* Semi-transparent white */
+  padding: 20px;
+  border-radius: 15px;
+  backdrop-filter: blur(10px);
+}
+
+.receipt-panel {
+  width: 300px;
+  border: 2px dashed brown;
+}
+
+#receipt-list {
+  list-style: none;
+  padding: 0;
+}
+
+.addtoreceipt {
+  background-color: brown;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* Standard Screen Styles */
+@media screen {
+  body { background-color: orange; }
+  .no-print { display: block; }
+}
+
+/* Print-Only Styles */
+@media print {
+  /* Hide the entire ordering panel and the print button itself */
+  .order-panel, .no-print {
+    display: none !important;
+  }
+
+  /* Make the background white to save ink */
+  body {
+    background: white !important;
+    color: black;
+  }
+
+  /* Center the receipt on the printed page */
+  #printable-receipt {
+    width: 100%;
+    border: none;
+    padding: 0;
+    margin: 0;
+    background: none;
+  }
+  
+  /* Remove browser-added headers/footers */
+  @page {
+    margin: 0.5in;
+  }
+}
+
+.chocolateModalClass {
+  display: none; /* Hidden by default */
+  position: fixed;
+  z-index: 1000;
+  left: 0; top: 0;
+  width: 100%; height: 100%;
+  background-color: rgba(0,0,0,0.7); /* Dark background overlay */
+}
+
+.chocolate-modal-content {
+  background-color: darkorange;
+  color: darkblue;
+  margin: 10% auto;
+  padding: 20px;
+  width: 80%;
+  max-width: 400px;
+  border-radius: 15px;
+  text-align: center;
+  position: relative;
+}
+
+.close-chocolate-modal {
+  position: absolute;
+  right: 15px; top: 10px;
+  font-size: 28px;
+  cursor: pointer;
+}
+
+.auth-container {
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    max-width: 350px;
+    margin: 50px auto;
+    text-align: center;
+}
+
+input {
+    width: 90%;
+    padding: 12px;
+    margin: 10px 0;
+    border: none;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.8);
+}
+
+button.auth-btn {
+    background: #5D4037; /* Rich Chocolate Brown */
+    color: white;
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+button.auth-btn:hover {
+    background: #3E2723; /* Darker Chocolate Brown */
+}
+
+.admin-nav {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    justify-content: center;
+}
+
+.admin-nav button {
+    background: #5D4037; /* Brown */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.admin-nav button:hover {
+    background: #3e2723;
+}
+
+.admin-display {
+    background: rgba(255, 255, 255, 0.3);
+    padding: 20px;
+    border-radius: 10px;
+    min-height: 200px;
+}
+
+.admin-section {
+    background-color: green;
+    color: red;
+    font-size: 1em;
 }
