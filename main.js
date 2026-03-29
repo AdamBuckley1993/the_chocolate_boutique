@@ -472,3 +472,10 @@ function toggleAdminSection(section) {
         display.innerHTML = "<h3>User Locations</h3><p>📍 New York, NY</p><p>📍 London, UK</p>";
     }
 }
+
+/* Standard practice */
+
+function enterYourName() {
+    const enterName = document.getElementById("enterName");
+    let personName = prompt("Please enter your name:", "Guest");
+}

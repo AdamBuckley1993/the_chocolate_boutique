@@ -371,6 +371,7 @@ h1 {
   body {
     background: white !important;
     color: black;
+    visibility: hidden;
   }
 
   /* Center the receipt on the printed page */
@@ -381,7 +382,17 @@ h1 {
     margin: 0;
     background: none;
   }
-  
+  /*
+.receipt-panel {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  background: white !important;
+  color: black; !important;
+  border: none;
+} */
+
   /* Remove browser-added headers/footers */
   @page {
     margin: 0.5in;
@@ -521,6 +532,14 @@ button.auth-btn:hover {
     color: white;
     border: 8px solid gray;
 }
+
+/* Practice standard */
+.practiceModalClass {
+  background-color: darkorange;
+  color: darkblue;
+}
+
+
 
 /* Mostly AI crap
 body {
