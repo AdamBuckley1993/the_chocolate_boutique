@@ -40,10 +40,22 @@ h1 {
 .burger {
   background-color: ivory;
   color: tomato;
-  overflow: hidden;
-  font-family: georgia;
-  position: sticky;
+  /* CHANGED: Use fixed to stay on screen regardless of parent containers */
+  position: fixed; 
   top: 0;
+  left: 0;
+  width: 100%;
+  /* ADDED: High z-index ensures it stays above your chocolate modals (z-index 1000) */
+  z-index: 2000; 
+  
+  /* REMOVED: overflow: hidden can sometimes break sticky/fixed behavior in certain browsers */
+  font-family: georgia;
+}
+
+/* ADDED: Since the menu is now fixed (floating), we must push the rest of the 
+   page content down so the top of your site isn't hidden behind the menu */
+body {
+  padding-top: 50px; 
 }
 
 .burger a {
@@ -70,8 +82,9 @@ h1 {
   display: none;
 }
 
+/* Mobile Adjustments */
 @media screen and (max-width: 600px) {
-  .burger a:not(:first-child) {display: none;}
+  .burger a:not(:first-child) { display: none; }
   .burger a.cowmeat {
     float: right;
     display: block;
@@ -79,18 +92,64 @@ h1 {
 }
 
 @media screen and (max-width: 600px) {
-  .burger.responsive {position: relative;}
+  /* CHANGED: Keep it fixed even in responsive mode */
+  .burger.responsive { 
+    position: fixed; 
+    height: auto;
+    max-height: 100vh;
+    overflow-y: auto; /* Allows scrolling inside the menu if it's very long */
+  }
+  
   .burger.responsive .cowmeat {
     position: absolute;
     right: 0;
     top: 0;
   }
+  
   .burger.responsive a {
     float: none;
     display: block;
     text-align: left;
   }
 }
+
+/* Styling for the "No thanks" button */
+.no-thanks-btn {
+    background-color: #333;
+    color: white;
+    border: 2px solid gray;
+    border-radius: 5px; /* Square-ish */
+    padding: 10px 15px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.no-thanks-btn:hover {
+    background-color: #555;
+    border-radius: 20px; /* Becomes round on hover */
+    color: yellow;
+}
+
+/* Styling for the "X" button */
+#modalX {
+    background-color: darkred;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 50%; /* Circle */
+    font-size: 20px;
+    top: -10px;
+    right: -10px;
+}
+
+#modalX:hover {
+    background-color: fuchsia;
+    color: black;
+    transform: rotate(90deg);
+}
+
+/* Success/Error Classes for JavaScript */
+.sub-success { color: green !important; font-weight: bold; }
+.sub-error { color: red !important; font-style: italic; border: 2px solid red; }
 
 .emailsubscription {
   border: 8px solid salmon;
@@ -402,7 +461,7 @@ h1 {
 .chocolateModalClass {
   display: none; /* Hidden by default */
   position: fixed;
-  z-index: 1000;
+  z-index: 2000;
   left: 0; top: 0;
   width: 100%; height: 100%;
   background-color: rgba(0,0,0,0.7); /* Dark background overlay */
@@ -539,6 +598,184 @@ button.auth-btn:hover {
   color: darkblue;
 }
 
+/* 1. Define variables for light mode (default) */
+:root {
+  --bg-color: orange;
+  --text-color: blue;
+  --panel-bg: rgba(255, 255, 255, 0.2);
+}
+
+/* 2. Define variables for dark mode */
+.dark-mode {
+  --bg-color: #1a1a1a; /* Near-black for less eye strain */
+  --text-color: #f0f0f0;
+  --panel-bg: rgba(255, 255, 255, 0.1);
+}
+
+/* 3. Use the variables in your existing styles */
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: background-color 0.3s, color 0.3s; /* Smooth transition */
+}
+
+.order-panel, .receipt-panel, .modal-content {
+  background: var(--panel-bg);
+  backdrop-filter: blur(10px);
+}
+
+.theme-btn {
+  background-color: #5D4037;
+  color: white;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+/* Special formatting for this specific modal */
+.newsletter-content {
+    border-radius: 25px; 
+    border: 5px solid fuchsia;
+    position: relative; /* Needed for the X positioning */
+}
+
+#modal-email-input {
+    width: 80%; 
+    padding: 10px; 
+    margin-bottom: 15px; 
+    border-radius: 10px;
+    border: 1px solid gray;
+}
+
+.modal-button-group {
+    display: flex; 
+    gap: 10px; 
+    justify-content: center;
+}
+
+/* Styling for the "No thanks" button */
+.no-thanks-btn {
+    background-color: #333;
+    color: white;
+    border: 2px solid gray;
+    border-radius: 5px; 
+    padding: 10px 15px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.no-thanks-btn:hover {
+    background-color: #555;
+    border-radius: 20px; /* Morphing shape */
+    color: yellow;
+}
+
+/* Styling for the "X" button */
+#modalX {
+    background-color: darkred;
+    color: white;
+    padding: 5px 12px;
+    border-radius: 50%; 
+    font-size: 20px;
+    position: absolute;
+    top: -20px; /* Offset to sit on the border */
+    right: -20px;
+    cursor: pointer;
+    transition: transform 0.4s;
+}
+
+#modalX:hover {
+    background-color: fuchsia;
+    color: black;
+    transform: rotate(90deg);
+}
+
+/* Success/Error States */
+.sub-error { 
+    border: 3px solid red !important; 
+    background-color: #ffe6e6 !important;
+}
+
+.slideshow-container {
+    max-width: 1000px;
+    position: relative;
+    margin: auto;
+    overflow: hidden;
+}
+
+.mySlides { display: none; }
+
+/* The "Shop Now" Link */
+.shop-now-link {
+    background-color: #5D4037;
+    color: white;
+    padding: 12px 24px;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 5px; /* Square by default */
+    transition: all 0.4s ease;
+    display: inline-block;
+}
+
+.shop-now-link:hover {
+    background-color: fuchsia;
+    color: yellow;
+    border-radius: 30px; /* Becomes round on hover */
+    transform: scale(1.1);
+}
+
+/* Dots/Circles Navigation */
+.dot-container { text-align: center; padding: 20px; }
+
+.dot {
+    cursor: pointer;
+    height: 15px;
+    width: 15px;
+    margin: 0 5px;
+    background-color: #bbb;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+}
+
+.active, .dot:hover {
+    background-color: #717171;
+}
+
+/* Fading animation */
+.fade {
+    animation-name: fade;
+    animation-duration: 1.5s;
+}
+
+@keyframes fade {
+    from {opacity: .4} 
+    to {opacity: 1}
+}
+
+/* Center the caption on top of the image */
+.caption-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Perfectly centers the text */
+    text-align: center;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.5); /* Transparent dark box */
+    padding: 20px;
+    border-radius: 15px;
+    width: 60%;
+}
+
+.caption-text h2 { margin: 0; font-size: 2rem; color: orange; }
+.caption-text p { font-size: 1.1rem; }
+
+/* The container must be relative for absolute children to work */
+.mySlides {
+    position: relative;
+    display: none;
+}
 
 
 /* Mostly AI crap

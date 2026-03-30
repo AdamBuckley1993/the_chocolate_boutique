@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="styles.css">
     <script src="main.js" defer></script>
 </head>
-<body onload="startTime()">
+<body>
   <div class="burger" id="yumyum">
     <a href="https://codepen.io/Adam-Buckley/pen/NPRWyLr" class="hungry">Home</a>
     <a href="#news">News</a>
@@ -19,6 +19,34 @@
     <i class="layers">&#9776</i>
     </a>
   </div>
+
+<div class="slideshow-container">
+    <div class="mySlides fade">
+        <img src="chocolatebar.jpg" style="width:100%">
+        <!-- Changed text-overlay to caption-text to match your CSS -->
+        <div class="caption-text">
+            <h2>Artisan Dark Truffles</h2>
+            <p>Handcrafted with 70% cacao.</p>
+            <a href="#shop" class="shop-now-link">Shop Now</a>
+        </div>
+    </div>
+
+    <div class="mySlides fade">
+        <img src="chocolatebar.jpg" style="width:100%">
+        <div class="caption-text">
+            <h2>Ghirardelli Collection</h2>
+            <p>The gold standard of luxury chocolate.</p>
+            <a href="#shop" class="shop-now-link">Shop Now</a>
+        </div>
+    </div>
+
+    <div class="dot-container">
+        <span class="dot" onclick="currentSlide(1)"></span>
+        <span class="dot" onclick="currentSlide(2)"></span>
+        <button id="pauseBtn" onclick="togglePause()" style="background-color: darkgreen; color: cyan; border: none; padding: 10px; border-radius: 5px; cursor: pointer;">Pause</button>
+    </div>
+</div>
+
 <h1>The Chocolate Boutique</h1>
 <p>Hello, and welcome to The Chocolate Boutique! Place your order in the area below and join our mailing list!</p>
 <button id="timetoggle" onclick="showTheTime()">Click me to toggle the time!</button>
@@ -171,6 +199,29 @@
         <hr>
         <p>Invoice Number: <strong id="display-invoice" style="font-weight:bold; background-color: fuchsia; color: brown;"></strong></p>
         <button onclick="closeThankYouModal()" class="auth-btn">Close</button>
+    </div>
+</div>
+
+<!-- Dark Mode Toggle Button -->
+<button id="theme-toggle" class="theme-btn" aria-label="Toggle dark mode">
+  🌙 Dark Mode
+</button>
+
+<!-- Automatic Newsletter Modal -->
+<div id="newsletterModal" class="chocolateModalClass">
+    <div class="chocolate-modal-content newsletter-content">
+        <!-- Close Button (X) -->
+        <span class="close-chocolate-modal" id="modalX" onclick="closeNewsletter()">&times;</span>
+        
+        <h2 id="news-title">Join the Sweetest List! 🍫</h2>
+        <p id="news-msg">Enter your email for exclusive chocolate deals.</p>
+        
+        <input type="email" id="modal-email-input" placeholder="your@email.com">
+        
+        <div class="modal-button-group">
+            <button class="auth-btn" id="modalSubscribeBtn" onclick="handleModalSubscribe()">Subscribe</button>
+            <button class="no-thanks-btn" onclick="closeNewsletter()">No thanks</button>
+        </div>
     </div>
 </div>
 

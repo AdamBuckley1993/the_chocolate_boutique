@@ -447,13 +447,7 @@ function logout() {
     location.reload();
 }
 
-window.onload = function() {
-    const savedUser = localStorage.getItem("currentUser");
-    const savedRole = localStorage.getItem("userRole");
-    if (savedUser) {
-        showInterface(savedUser, savedRole);
-    }
-};
+/* Moved window.onload function */
 
 // --- 5. ADMIN DASHBOARD LOGIC ---
 function toggleAdminSection(section) {
@@ -470,6 +464,160 @@ function toggleAdminSection(section) {
         display.innerHTML = "<h3>Order History</h3><p>Total Orders Processed: " + orderHistory.length + "</p>";
     } else if (section === 'locations') {
         display.innerHTML = "<h3>User Locations</h3><p>📍 New York, NY</p><p>📍 London, UK</p>";
+    }
+}
+
+const themeToggle = document.getElementById("theme-toggle");
+const currentTheme = localStorage.getItem("theme");
+
+if (currentTheme === "dark") {
+    document.body.classList.add("dark-mode");
+    themeToggle.innerText = "☀️ Light Mode";
+}
+
+themeToggle.addEventListener("click", function() {
+    document.body.classList.toggle("dark-mode");
+
+    let theme = "light";
+    if (document.body.classList.contains("dark-mode")) {
+        theme = "dark";
+        themeToggle.innerText = "☀️ Light Mode";
+    } else {
+        themeToggle.innerText = "🌙 Dark Mode";
+    }
+
+    localStorage.setItem("theme", theme);
+});
+
+function closeNewsletter() {
+    const modal = document.getElementById("newsletterModal");
+    if (modal) modal.style.display = "none";
+}
+
+function handleModalSubscribe() {
+    const emailInput = document.getElementById("modal-email-input");
+    const title = document.getElementById("news-title");
+    const msg = document.getElementById("news-msg");
+    const subscribeBtn = document.getElementById("modalSubscribeBtn");
+    
+    // Safety check: make sure elements exist before accessing .value
+    if (!emailInput || !title || !msg) return;
+
+    const emailValue = emailInput.value.trim();
+
+    if (emailValue === "") {
+        // --- ERROR STATE ---
+        title.innerText = "Error!";
+        msg.innerText = "Email cannot be blank!";
+        title.style.color = "red";
+        msg.style.color = "red";
+        emailInput.classList.add("sub-error"); 
+    } else {
+        // --- SUCCESS STATE ---
+        title.innerText = "Welcome to the Club!";
+        msg.innerText = `Thank you for subscribing, ${emailValue}!`;
+        title.style.color = "green";
+        msg.style.color = "green";
+        
+        // Cleanup UI
+        emailInput.classList.remove("sub-error");
+        emailInput.style.display = "none"; 
+        if (subscribeBtn) subscribeBtn.style.display = "none";
+        
+        // Auto-close
+        setTimeout(closeNewsletter, 2000);
+    }
+}
+
+// Better practice: Use DOMContentLoaded so it triggers as soon as HTML is ready
+window.addEventListener('DOMContentLoaded', () => {
+    setTimeout(() => {
+        const modal = document.getElementById("newsletterModal");
+        if (modal) modal.style.display = "block";
+    }, 1000);
+});
+
+let slideIndex = 0; // Start at 0 for proper incrementing
+let isPaused = false;
+let slideTimer;
+
+window.onload = function() {
+    // Start clock and slideshow immediately
+    if (typeof startTime === "function") startTime();
+    showSlides(); 
+
+    // Handle User sessions
+    const savedUser = localStorage.getItem("currentUser");
+    const savedRole = localStorage.getItem("userRole");
+    if (savedUser && typeof showInterface === "function") {
+        showInterface(savedUser, savedRole);
+    }
+    
+    // Newsletter Modal
+    setTimeout(() => {
+        const modal = document.getElementById("newsletterModal");
+        if (modal) {
+            modal.style.display = "block";
+        }
+    }, 1000);
+};
+
+// Logic to handle Dot clicks
+function currentSlide(n) {
+    clearTimeout(slideTimer);
+    slideIndex = n - 1; // Set to the specific slide (adjusting for increment)
+    isPaused = false;   // Unpause on manual selection
+    document.getElementById("pauseBtn").innerText = "Pause";
+    document.getElementById("pauseBtn").style.backgroundColor = "darkgreen";
+    showSlides();
+}
+
+function showSlides() {
+    let i;
+    let slides = document.getElementsByClassName("mySlides");
+    let dots = document.getElementsByClassName("dot");
+
+    // Hide all slides
+    for (i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+    }
+
+    // Move to next slide
+    slideIndex++;
+    if (slideIndex > slides.length) { slideIndex = 1; }
+
+    // Deactivate dots
+    for (i = 0; i < dots.length; i++) {
+        dots[i].className = dots[i].className.replace(" active", "");
+    }
+
+    // Display current slide
+    slides[slideIndex - 1].style.display = "block";
+    if (dots.length > 0) {
+        dots[slideIndex - 1].className += " active";
+    }
+
+    // Automatic Loop - Only if NOT paused
+    if (!isPaused) {
+        // IMPORTANT: Save the timer to the variable so we can stop it!
+        slideTimer = setTimeout(showSlides, 4000);
+    }
+}
+
+function togglePause() {
+    const slideshowButton = document.getElementById("pauseBtn");
+    isPaused = !isPaused;
+
+    if (isPaused) {
+        clearTimeout(slideTimer); // Stop the loop
+        slideshowButton.innerText = "Play";
+        slideshowButton.style.backgroundColor = "maroon";
+        slideshowButton.style.color = "lightyellow";
+    } else {
+        slideshowButton.innerText = "Pause";
+        slideshowButton.style.backgroundColor = "darkgreen";
+        slideshowButton.style.color = "cyan";
+        showSlides(); // Restart the loop
     }
 }
 
