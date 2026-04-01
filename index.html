@@ -9,7 +9,7 @@
 </head>
 <body>
   <div class="burger" id="yumyum">
-    <a href="https://codepen.io/Adam-Buckley/pen/NPRWyLr" class="hungry">Home</a>
+    <a href="#home" class="hungry">Home</a>
     <a href="#news">News</a>
     <a href="#contact">Contact</a>
     <a href="#about">About</a>
@@ -20,33 +20,41 @@
     </a>
   </div>
 
+  <div class="search-container">
+    <div class="controls">
+        <input type="text" id="searchBox" placeholder="Search content...">
+        <button id="toggleBtn" class="mode-live">Mode: Live</button>
+    </div>
+        <div id="resultsList" class="results-dropdown hidden"></div>
+    </div>
+
+    <label class="toggle">
+        <input type="checkbox" id="liveMode" checked> Live search
+    </label>
+
 <div class="slideshow-container">
     <div class="mySlides fade">
         <img src="chocolatebar.jpg" style="width:100%">
-        <!-- Changed text-overlay to caption-text to match your CSS -->
         <div class="caption-text">
             <h2>Artisan Dark Truffles</h2>
             <p>Handcrafted with 70% cacao.</p>
             <a href="#shop" class="shop-now-link">Shop Now</a>
         </div>
     </div>
-
     <div class="mySlides fade">
-        <img src="chocolatebar.jpg" style="width:100%">
+        <img src="otherchocolateimage.jpeg" style="width:100%">
         <div class="caption-text">
             <h2>Ghirardelli Collection</h2>
             <p>The gold standard of luxury chocolate.</p>
             <a href="#shop" class="shop-now-link">Shop Now</a>
         </div>
     </div>
-
     <div class="dot-container">
         <span class="dot" onclick="currentSlide(1)"></span>
         <span class="dot" onclick="currentSlide(2)"></span>
         <button id="pauseBtn" onclick="togglePause()" style="background-color: darkgreen; color: cyan; border: none; padding: 10px; border-radius: 5px; cursor: pointer;">Pause</button>
     </div>
 </div>
-
 <h1>The Chocolate Boutique</h1>
 <p>Hello, and welcome to The Chocolate Boutique! Place your order in the area below and join our mailing list!</p>
 <button id="timetoggle" onclick="showTheTime()">Click me to toggle the time!</button>
@@ -57,7 +65,6 @@
     <h2 class="newslettertitle">Subscribe to our newsletter!</h2>
     <p class="whysubscribetous">We guarantee you the very best chocolates to be updated!</p>
   </div>
-    
     <div class="emailsubscriptionfield">
       <input class="nameentry" type="text" placeholder="Name" placeholder name="name" required>
       <input class="emailentry" type="text" placeholder="Email address" name="mail" required>
@@ -67,18 +74,13 @@
   <button class="subscribe" id="subscribehere" onclick="subscribeText()"><input type="submit" value="Subscribe"></button>
   </form>
   <br>
-  
   <button id="myWelcomeBtn" class="welcomeBeautiful" onclick="welcomeHome()">Click Me to Be Welcomed Here!</button>
-
   <div id="myWelcomeModal" class="welcomeModal">
-
     <div class="welcome-modal-content">
     <span class="closeWelcome">&times;</span>
     <p class="welcomemessage">Welcome to <span class="logowelcome">The Chocolate Boutique!</span> We hope you find the perfect chocolate treat for you!</p>
   </div>
-
 </div>
-
 <div id="myLoginOrGuestModal" class="loginOrGuestModal">
     <div class="loginOrGuest-modal-content">
         <span class="closePathChoice">&times;</span>
@@ -86,16 +88,13 @@
     <span>... </span><button id="guestOffer">or click here as a guest!</button>
     </div>
 </div>
-
 <img src="ghirardelli_72%_dark_chocolate.jpeg" alt="Ghirardelli 72% Dark Chocolate" class="ghirardelliDarkChocolateImage">
 <img src="chocolatebar.jpg" alt="regular chocolate bar" class="regularChocolateBarImage">
-
 <div class="orderplacing">
     <div class="orderplacingcontent">
         <p class="orders">Place your order now!</p>
     </div>
 </div>
-
 <div class="shop-container">
   <!-- Ordering Section -->
   <div class="order-panel">
@@ -106,11 +105,9 @@
       <option value="White Raspberry" data-price="2.75">White Raspberry - $2.75</option>
       <option value="Caramel Praline" data-price="3.00">Caramel Praline - $3.00</option>
     </select>
-    
     <input type="number" id="quantity-input" value="1" min="1">
     <button class="addtoreceipt" onclick="addToReceipt()">Add to Receipt</button>
   </div>
-
 <div id="chocolateModal" class="chocolateModalClass">
     <div class="chocolate-modal-content">
         <span class="close-chocolate-modal" onclick="closeChocolateModal()">&times;</span>
@@ -119,7 +116,6 @@
         <p id="chocolate-modal-description"></p>
     </div>
 </div>
-
 <div class="chocolate-item" onclick="openChocolateModal('Dark Truffle', 'Yummy, very dark and bold!', 'chocolatebar.jpg')">View Dark Truffle Details</div>
 <div class="chocolate-item" onclick="openChocolateModal('Milk Sea Salt', 'Smooth milk chocolate with a pinch of sea salt.', 'milk_salt.jpg')">
   <p>View Milk Sea Salt Details</p>
@@ -130,14 +126,10 @@
 <div class="chocolate-item" onclick="openChocolateModal('Caramel Praline', 'Rich caramel with crunchy praline pieces.', 'caramel_praline.jpg')">
   <p>View Caramel Praline Details</p>
 </div>
-
 <button type="button" class="submit-order-btn" onclick="processCheckout()">Submit Order and Get Receipt</button>
-
-  <!-- Real-Time Receipt -->
   <div class="receipt-panel">
     <h3>Current Receipt</h3>
     <ul id="receipt-list">
-      <!-- Items will appear here dynamically -->
     </ul>
     <hr>
     <div class="receipt-total">
@@ -146,21 +138,18 @@
     <button type="button" class="no-print" onclick="printReceipt();">Print Receipt</button>
   </div>
 </div>
-
 <div id="login-container" class="order-panel">
     <h2>Login</h2>
     <input type="text" id="username" placeholder="Username">
     <input type="password" id="password" placeholder="Password">
-    <button onclick="login()">Login</button>
+    <button class="login" onclick="login()">Login</button>
     <p id="login-msg" style="color: red;"></p>
 </div>
-
 <div id="user-header" style="display: none; padding: 10px; background: rgba(255,255,255,0.2); border-radius: 10px; margin-bottom: 20px;">
     <span id="welcome-text"></span>
     <button onclick="logout()" style="background: brown; color: white; float: right;">Logout</button>
     <button id="admin-btn" style="display: none; background: gold; color: black; margin-right: 10px;" onclick="">Admin Dashboard</button>
 </div>
-
 <div id="register-container" style="display:none;" class="order-panel">
     <h2>Create Account</h2>
     <input type="text" id="reg-username" placeholder="Choose Username">
@@ -168,30 +157,23 @@
     <input type="password" id="reg-password" placeholder="Create Password">
     <button onclick="register()">Sign Up</button>
 </div>
-
 <p><a href="#" onclick="showForgotForm()">Forgot Password?</a></p>
-
 <div id="forgot-container" style="display:none;" class="order-panel">
     <h2>Reset Password</h2>
     <p>Enter your email to receive a reset link.</p>
     <input type="email" id="forgot-mail" placeholder="Email">
     <button onclick="sendResetEmail()">Send Reset Link</button>
 </div>
-
 <div id="admin-dashboard" class="order-panel" style="display:none;">
     <h1>Admin Dashboard</h1>
-
     <div class="admin-nav">
         <button onclick="toggleAdminSection('recent')">Recent Orders</button>
         <button onclick="toggleAdminSection('history')">Order History</button>
         <button onclick="toggleAdminSection('locations')">User Locations</button>
     </div>
-
     <div id="admin-content" class="admin-display">
-
     </div>
 </div>
-
 <div id="thankYouModal" class="chocolateModalClass" style="display: none;">
     <div class="chocolate-modal-content">
         <h2 style="background-color: darkcyan; color: darkkhaki;">Thank you for your order! 🍫</h2>
@@ -201,30 +183,21 @@
         <button onclick="closeThankYouModal()" class="auth-btn">Close</button>
     </div>
 </div>
-
-<!-- Dark Mode Toggle Button -->
 <button id="theme-toggle" class="theme-btn" aria-label="Toggle dark mode">
   🌙 Dark Mode
 </button>
-
-<!-- Automatic Newsletter Modal -->
 <div id="newsletterModal" class="chocolateModalClass">
     <div class="chocolate-modal-content newsletter-content">
-        <!-- Close Button (X) -->
         <span class="close-chocolate-modal" id="modalX" onclick="closeNewsletter()">&times;</span>
-        
         <h2 id="news-title">Join the Sweetest List! 🍫</h2>
         <p id="news-msg">Enter your email for exclusive chocolate deals.</p>
-        
         <input type="email" id="modal-email-input" placeholder="your@email.com">
-        
         <div class="modal-button-group">
             <button class="auth-btn" id="modalSubscribeBtn" onclick="handleModalSubscribe()">Subscribe</button>
             <button class="no-thanks-btn" onclick="closeNewsletter()">No thanks</button>
         </div>
     </div>
 </div>
-
 </body>
 </html>
 
