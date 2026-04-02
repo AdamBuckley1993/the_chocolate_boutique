@@ -19,18 +19,15 @@
     <i class="layers">&#9776</i>
     </a>
   </div>
-
+<a href="#home"><img src="thechocolateboutique.1.jpeg" alt="The Chocolate Boutique" class="thechocolateboutique"></a>
   <div class="search-container">
     <div class="controls">
         <input type="text" id="searchBox" placeholder="Search content...">
+        <button id="resetBtn" class="reset-btn">&times;</button>
         <button id="toggleBtn" class="mode-live">Mode: Live</button>
     </div>
-        <div id="resultsList" class="results-dropdown hidden"></div>
+        <div id="resultsList" class="results-area"></div>
     </div>
-
-    <label class="toggle">
-        <input type="checkbox" id="liveMode" checked> Live search
-    </label>
 
 <div class="slideshow-container">
     <div class="mySlides fade">
@@ -49,9 +46,18 @@
             <a href="#shop" class="shop-now-link">Shop Now</a>
         </div>
     </div>
+    <div class="mySlides fade">
+        <img src="milkchocolate.jpeg" style="width:100%">
+        <div class="caption-text">
+            <h2>Milk Chocolate Collection</h2>
+            <p>Our milk chocolate is crafted with premium whole milk sourced from local family farms.</p>
+            <a href="#shop" class="shop-now-link">Shop Now</a>
+        </div>
+    </div>
     <div class="dot-container">
         <span class="dot" onclick="currentSlide(1)"></span>
         <span class="dot" onclick="currentSlide(2)"></span>
+        <span class="dot" onclick="currentSlide(3)"></span>
         <button id="pauseBtn" onclick="togglePause()" style="background-color: darkgreen; color: cyan; border: none; padding: 10px; border-radius: 5px; cursor: pointer;">Pause</button>
     </div>
 </div>
@@ -88,7 +94,9 @@
     <span>... </span><button id="guestOffer">or click here as a guest!</button>
     </div>
 </div>
-<img src="ghirardelli_72%_dark_chocolate.jpeg" alt="Ghirardelli 72% Dark Chocolate" class="ghirardelliDarkChocolateImage">
+<br>
+<br>
+<img src="otherchocolateimage.jpeg" alt="Ghirardelli 72% Dark Chocolate" class="ghirardelliDarkChocolateImage">
 <img src="chocolatebar.jpg" alt="regular chocolate bar" class="regularChocolateBarImage">
 <div class="orderplacing">
     <div class="orderplacingcontent">
@@ -117,7 +125,7 @@
     </div>
 </div>
 <div class="chocolate-item" onclick="openChocolateModal('Dark Truffle', 'Yummy, very dark and bold!', 'chocolatebar.jpg')">View Dark Truffle Details</div>
-<div class="chocolate-item" onclick="openChocolateModal('Milk Sea Salt', 'Smooth milk chocolate with a pinch of sea salt.', 'milk_salt.jpg')">
+<div class="chocolate-item" onclick="openChocolateModal('Milk Sea Salt', 'Smooth milk chocolate with a pinch of sea salt.', 'otherchocolateimage.jpeg')">
   <p>View Milk Sea Salt Details</p>
 </div>
 <div class="chocolate-item" onclick="openChocolateModal('White Raspberry', 'Creamy white chocolate with raspberry bits.', 'white_raspberry.jpg')">

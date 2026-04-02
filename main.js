@@ -242,9 +242,11 @@ window.addEventListener('DOMContentLoaded', () => {
         if (modal) modal.style.display = "block";
     }, 1000);
 });
+
 let slideIndex = 0; 
 let isPaused = false;
 let slideTimer;
+
 function initializeApp() {
     if (typeof startTime === "function") startTime(); 
     const slides = document.getElementsByClassName("mySlides");
@@ -254,35 +256,45 @@ function initializeApp() {
         if (dots.length > 0) dots[0].className += " active";
         startAutoSlide();
     }
+
     const savedUser = localStorage.getItem("currentUser");
     const savedRole = localStorage.getItem("userRole");
     if (savedUser && typeof showInterface === "function") {
         showInterface(savedUser, savedRole);
     }
+
     setTimeout(() => {
         const modal = document.getElementById("newsletterModal");
         if (modal) { modal.style.display = "block"; }
     }, 1000);
 }
+
 window.addEventListener('load', initializeApp);
+
 function showSlides(n) {
     let slides = document.getElementsByClassName("mySlides");
     let dots = document.getElementsByClassName("dot");
+
     if (slides.length === 0) return;
+
     if (n >= slides.length) { slideIndex = 0; }
     else if (n < 0) { slideIndex = slides.length - 1; } 
     else { slideIndex = n; }
+
     for (i = 0; i < slides.length; i++) {
         slides[i].style.display = "none";
     }
+
     for (i = 0; i < dots.length; i++) {
         dots[i].className = dots[i].className.replace(" active", "");
     }
+
     slides[slideIndex].style.display = "block";
     if (dots.length > 0) {
         dots[slideIndex].className += " active";
     }
 }
+
 function startAutoSlide() {
     clearTimeout(slideTimer);
     if (!isPaused) {
@@ -293,8 +305,11 @@ function startAutoSlide() {
         }, 4000);
     }
 }
+
 function togglePause() {
     const slideshowButton = document.getElementById("pauseBtn");
+    if (!slideshowButton) return;
+    
     isPaused = !isPaused;
     if (isPaused) {
         clearTimeout(slideTimer);
@@ -308,6 +323,7 @@ function togglePause() {
         startAutoSlide();
     }
 }
+
 function currentSlide(n) {
     clearTimeout(slideTimer);
     slideIndex = n - 1; 
@@ -315,18 +331,35 @@ function currentSlide(n) {
     if (!isPaused) startAutoSlide();
 }
 
-const searchData = ["Home", "About Us", "Services", "Contact", "FAQ", "Blog", "Portfolio"];
+const searchData = [ 
+    { label: "Home", url: "/home" }, 
+    { label: "About Us", url: "/about"}, 
+    { label: "Services", url: "/services" },
+    { label: "Contact", url: "/contact" },
+    { label: "FAQ", url: "/faq" },
+    { label: "Blog", url: "/blog" },
+    { label: "Portfolio", url: "/portfolio" }
+];
+
 const searchBox = document.getElementById('searchBox');
 const resultsList = document.getElementById('resultsList');
 const toggleBtn = document.getElementById('toggleBtn');
+const resetBtn = document.getElementById('resetBtn');
 
 let isLive = true;
 
 if (toggleBtn) {
     toggleBtn.addEventListener('click', () => {
-        isLive != isLive;
+        isLive = !isLive;
         toggleBtn.textContent = isLive ? "Mode: Live" : "Mode: Enter";
         toggleBtn.className = isLive ? "mode-live" : "mode-enter";
+    });
+}
+
+if (resetBtn) {
+    resetBtn.addEventListener('click', () => {
+        searchBox.value = '';
+        performSearch();
     });
 }
 
@@ -338,10 +371,12 @@ function performSearch() {
         return;
     }
 
-    const matches = searchData.filter(item => item.toLowerCase().includes(query));
+    const matches = searchData.filter(item => item.label.toLowerCase().includes(query));
 
     if (matches.length > 0) {
-        resultsList.textContent = matches.length > 1 ? matches.join(', '): matches[0];
+        const linkHTML = matches.map(item => `<a href="${item.url}">${item.label}</a>`);
+
+        resultsList.innerHTML = linkHTML.length > 1 ? linkHTML.join(', ') : linkHTML[0];
     } else {
         resultsList.innerHTML = '<span class="no-results">No matches found.</span>';
     }
@@ -354,6 +389,8 @@ searchBox.addEventListener('input', () => {
 searchBox.addEventListener('keydown', (e) => {
     if (e.key === 'Enter') performSearch();
 });
+
+performSearch();
 
 /* Standard practice */
 
