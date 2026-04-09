@@ -309,6 +309,7 @@ body {
     height: 200px;
     width: 300px;
     margin: 20px auto;
+    padding: 20px;
     text-align: center;
     line-height: 200px;
     font-size: 1.5em;
@@ -575,6 +576,7 @@ body {
     position: relative;
     margin: auto;
     overflow: hidden;
+    border-radius: 8px;
 }
 .mySlides { display: none; }
 .shop-now-link {
@@ -593,7 +595,16 @@ body {
     border-radius: 30px; 
     transform: scale(1.1);
 }
-.dot-container { text-align: center; padding: 20px; }
+.dot-container { 
+  text-align: center; 
+  padding: 20px;
+  position: absolute;
+    bottom: 20px;       /* Distance from bottom edge */
+    left: 20px;         /* Distance from left edge */
+    z-index: 10;        /* Keep above the image */
+    display: flex;      /* Align dots in a row */
+    gap: 8px;  
+}
 .dot {
     cursor: pointer;
     height: 15px;
@@ -606,6 +617,7 @@ body {
 }
 .active, .dot:hover {
     background-color: #717171;
+    transform: scale(1.2);
 }
 .fade {
     animation-name: fade;
@@ -631,7 +643,7 @@ body {
 .caption-text p { font-size: 1.1rem; }
 .mySlides img {
     width: 100%;
-    height: 500px;
+    height: 450px;
     aspect-ratio: 16 / 9;
     object-fit: cover;
     object-position: center;
@@ -644,6 +656,7 @@ body {
   margin: auto;
   overflow: hidden;
   border-radius: 12px;
+  height: 450px;
 }
 
 .login {
@@ -761,6 +774,320 @@ body {
   max-height: 400px;
   max-width: 400px;
 }
+
+/* Navbar Styling */
+.navbar {
+    background-color: darkseagreen;
+    color: darksalmon;
+    padding: 0 20px;
+    font-family: sans-serif;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links > li {
+    position: relative; /* Essential for positioning dropdowns */
+}
+
+.nav-links a {
+    display: block;
+    color: fuchsia;
+    padding: 15px 20px;
+    text-decoration: none;
+}
+
+.nav-links a:hover {
+    background-color: darksalmon;
+}
+
+/* Dropdown Logic */
+.dropdown-content {
+    display: none; /* Hide by default */
+    position: absolute;
+    background-color: orangered;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+    z-index: 100;
+    list-style: none;
+    padding: 0;
+}
+
+.dropdown-content a {
+    color: royalblue;
+    background-color: lightyellow;
+    padding: 12px 16px;
+}
+
+.dropdown-content a:hover {
+    background-color: aquamarine;
+}
+
+/* Show the dropdown on hover */
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* Mobile Responsive */
+@media (max-width: 600px) {
+    .nav-links {
+        flex-direction: column;
+    }
+    .dropdown-content {
+        position: static; /* Dropdown pushes content down on mobile */
+        width: 100%;
+    }
+}
+
+.contact-container {
+  background-color: var(--main-theme);
+  transition: background-color 0.3s ease;
+}
+
+.hidden {
+  display: none;
+}
+
+.contactus {
+  background-color: darkorange;
+  color: darkblue;
+  padding: 20px auto;
+  margin: 20px;
+  border: 8px solid darkgreen;
+  gap: 20px;
+}
+
+.sendusanemail {
+  background-color: coral;
+  color: greenyellow;
+  font-family: Arial, Helvetica, sans-serif;
+  border: 8px solid royalblue;
+}
+
+.colorpicker {
+  background-color: orangered;
+  color: lightgoldenrodyellow;
+  border: 8px dashed sandybrown;
+}
+
+.contact-controls {
+  display: flex;
+  flex-direction: column;
+  background-color: khaki;
+  color: rebeccapurple;
+  align-items: center;
+  gap: 20px;
+  margin: 20px;
+}
+
+#colorPicker {
+    width: 60px;
+    height: 60px;
+    border: none;
+    cursor: pointer;
+    background: none;
+}
+
+#emailBtn {
+    padding: 15px 30px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    border: 4px solid darkgreen;
+    background: darkorange;
+    color: darkblue;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+#emailBtn:hover {
+    background: rebeccapurple;
+    color: bisque;
+    border: 4px solid lightyellow;
+    transform: translateY(-3px);
+}
+
+.button-group {
+  background-color: orchid;
+  color: skyblue;
+}
+
+.emailusnow {
+  background-color: sienna;
+  color: ivory;
+  border: 8px solid purple;
+}
+
+.resetcolorsbutton {
+  background-color: darkgoldenrod;
+  color: papayawhip;
+  border: 8px solid lawngreen;
+}
+
+.accessibilitybutton {
+  background-color: darkorange;
+  color: darkblue;
+  border: 16px solid darkgreen;
+  border-radius: 16px;
+}
+
+.yourthoughts {
+  background-color: sandybrown;
+  color: fuchsia;
+  border: 16px solid darkseagreen;
+}
+
+:root {
+  --main-theme: #1e90ff;
+}
+
+/*
+Ghirardelli model
+
+.page-wrapper {
+  background-color: saddlebrown;
+  color: mintcream;
+  display: flex;
+  flex-direction: column;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  height: 200px;
+  line-height: 40px;
+  min-height: 200px;
+  overflow-x: hidden;
+  overflow-y: hidden;
+  position: relative;
+  width: 1470px;
+}
+
+.page-header {
+  background-color: wheat;
+  box-sizing: border-box;
+  color: #ff9933;
+  display: block;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 400;
+  height: 200px;
+  line-height: 21.428572px;
+  position: relative;
+  transition-behavior: normal;
+  transition-delay: 0s;
+  transition-duration: 0.2s;
+  transition-property: var(--bg-color);
+  transition-timing-function: ease-in-out;
+  width: 1470px;
+  z-index: 101;
+}
+
+.panel-wrapper {
+  background-color: #660066;
+  box-sizing: border-box;
+  color: #ffccff;
+  display: block;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 400;
+  height: 60px;
+  line-height: 21.428572px;
+  margin-top: 0px;
+  position: relative;
+  transition-behavior: normal;
+  transition-delay: 0s;
+  transition-duration: 0.2s;
+  transition-property: margin-top;
+  transition-timing-function: ease-in-out;
+  width: 1470px;
+}
+
+.panel-header {
+  box-sizing: border-box;
+  color: #ff9966;
+  display: block;
+font-family: Arial, sans-serif;
+font-size: 15px;
+font-style: normal;
+font-weight: 400;
+height: 40px;
+line-height: 21.428572px;
+margin-left: 55px;
+margin-right: 55px;
+max-width: 1360px;
+padding-bottom: 10.5px;
+padding-left: 20px;
+padding-right: 20px;
+padding-top: 10.5px;
+width: 1360px;
+}
+
+.action-skip-contentarea {
+  border-bottom-color: #99ff33;
+  border-bottom-style: none;
+border-bottom-width: 0px;
+border-image-outset: 0;
+border-image-repeat: stretch;
+border-image-slice: 100%;
+border-image-source: none;
+border-image-width: 1;
+border-left-color: #99ff33;
+border-left-style: none;
+border-left-width: 0px;
+border-right-color: #99ff33;
+border-right-style: none;
+border-right-width: 0px;
+border-top-color: #99ff33;
+border-top-style: none;
+border-top-width: 0px;
+box-sizing: border-box;
+clip: rect(0px, 0px, 0px, 0px);
+color: #99ccff;
+cursor: pointer;
+display: block;
+font-family: Arial, sans-serif;
+font-size: 15px;
+font-style: normal;
+font-weight: 400;
+height: 1px;
+line-height: 21.428572px;
+margin-bottom: -1px;
+margin-left: -1px;
+margin-right: -1px;
+margin-top: -1px;
+overflow-x: hidden;
+overflow-y: hidden;
+padding-bottom: 0px;
+padding-left: 0px;
+padding-right: 0px;
+padding-top: 0px;
+position: absolute;
+text-decoration-color: #9900ff;
+}
+
+.panel-left {
+  background-color: red;
+  color: lavender;
+  color: rgb(85, 85, 85);
+display: block;
+float: left;
+font-family: Arial, sans-serif;
+font-size: 15px;
+font-style: normal;
+font-weight: 400;
+height: 17px;
+line-height: 21.428572px;
+width: 63.09375px;
+}
+
+*/
+
 
 /* Mostly AI crap
 body {

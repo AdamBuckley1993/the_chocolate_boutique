@@ -309,7 +309,7 @@ function startAutoSlide() {
 function togglePause() {
     const slideshowButton = document.getElementById("pauseBtn");
     if (!slideshowButton) return;
-    
+
     isPaused = !isPaused;
     if (isPaused) {
         clearTimeout(slideTimer);
@@ -391,6 +391,64 @@ searchBox.addEventListener('keydown', (e) => {
 });
 
 performSearch();
+
+const colorPicker = document.getElementById('colorPicker');
+
+const sitePicker = document.getElementById('colorPicker');
+const contactSection = document.getElementById('contact-section');
+const resetColorButton = document.getElementById('resetColors');
+const accessBtn = document.getElementById('accessBtn');
+const recBox = document.getElementById('recommendationBox');
+const recText = document.getElementById('suggestedPairing');
+const root = document.documentElement;
+
+if (sitePicker) {
+    sitePicker.addEventListener('input', (e) => {
+        const newColor = e.target.value;
+        root.style.setProperty('--main-theme', newColor);
+        contactSection.style.backgroundColor = newColor;
+    });
+}
+
+function sendEmail() {
+    const email = "hello@thechocolateboutique.com";
+    const subject = "Inquiry from Website";
+    const body = "Hi, there, I was browsing your all's chocolate collection...";
+
+    window.location.href = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+}
+
+if (resetBtn) {
+    resetBtn.addEventListener('click', () => {
+        const defaultColor = '#1e90ff';
+        root.style.setProperty('--main-theme', defaultColor);
+        contactSection.style.backgroundColor = defaultColor;
+        sitePicker.value = defaultColor;
+        recBox.classList.add('hidden');
+    });
+}
+
+if (accessBtn) {
+    accessBtn.addEventListener('click', () => {
+    const currentColor = sitePicker.value.toUpperCase();
+    recBox.classList.remove('hidden');
+
+        if (isColorDark(currentColor)) {
+            recText.innerText = `Current Theme (${currentColor}) is DARK. Pair with: White (#FFFFFF) or Cream (#FFFDD0) for 7:1 contrast.`;
+        } else {
+            recText.innerText = `Current Theme (${currentColor}) is LIGHT. Pair with: Black (#000000) or Charcoal (#333333) for 7:1 contrast.`;
+        }
+    });
+}
+
+
+function isColorDark(hex) {
+    const r = parseInt(hex.slice(1, 3), 16);
+    const g = parseInt(hex.slice(3, 5), 16);
+    const b = parseInt(hex.slice(5, 7), 16);
+    const yiq = ((r * 299) + (g * 587) + (b * 114)) / 1000;
+    return yiq < 128;
+}
 
 /* Standard practice */
 
